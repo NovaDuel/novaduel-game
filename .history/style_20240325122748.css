@@ -25,10 +25,10 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
-    align-items: left;
+    align-items: center;
     width: 30%;
     height: 100%;
-    padding: 0 20px;
+    padding: 10px;
     background-color: greenyellow;
 }
 

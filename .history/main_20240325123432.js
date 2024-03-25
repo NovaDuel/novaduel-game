@@ -83,16 +83,16 @@ $$('#basic-attack').addEventListener('click', function() {
     let playerStrength = player.attackPlayer();
     enemy.receiveDamage(playerStrength);
     $$("#health-enemy").style.width = `${enemy.health}%`; 
-    setTimeout(actionsEnemy, 500, randomAction);
+    setTimeout(actionsEnemy, 1000, randomAction);
 })
 $$('#special-attack').addEventListener('click', function() {
     let playerStrength = player.specialAttackPlayer();
     enemy.receiveDamage(playerStrength);
     $$("#health-enemy").style.width = `${enemy.health}%`; 
-    setTimeout(actionsEnemy, 500, randomAction);
+    setTimeout(actionsEnemy, 1000, randomAction);
 })
 $$('#heal-action').addEventListener('click', function() {
     player.healing();
-    setTimeout(actionsEnemy, 500, randomAction);
+    setTimeout(actionsEnemy, 1000, randomAction);
 })
 

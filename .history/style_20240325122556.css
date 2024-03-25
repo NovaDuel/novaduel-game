@@ -25,10 +25,9 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
-    align-items: left;
+    align-items: center;
     width: 30%;
     height: 100%;
-    padding: 0 20px;
     background-color: greenyellow;
 }
 
@@ -39,7 +38,7 @@ body {
 }
 
 .stamina {
-    width: 100%;
+    width: 90%;
     height: 40%;
     background-color: blue
 }
