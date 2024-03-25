@@ -136,7 +136,7 @@ selector('#special-attack').addEventListener('click', function() {
     stateHealth();
 });
 selector('#heal-action').addEventListener('click', function() {
-    if (player.health >= 100 || player.stamina === 0) {
+    if (player.health === 100 || player.stamina === 0) {
         alert("No puedes curarte ahora mismo")
     } else {
         player.healing();
