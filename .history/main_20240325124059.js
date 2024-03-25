@@ -76,6 +76,7 @@ function actionsEnemy(action) {
         case 2:
             enemy.healing();
             $$("#stamina-enemy").style.width = `${enemy.stamina}%`;
+
             break;
     }
 }

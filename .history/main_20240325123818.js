@@ -71,11 +71,9 @@ function actionsEnemy(action) {
             let specialEnemyStrength = enemy.specialAttackEnemy();
             player.receiveDamage(specialEnemyStrength);
             $$("#health-player").style.width = `${player.health}%`; 
-            $$("#stamina-enemy").style.width = `${enemy.stamina}%`;
             break;
         case 2:
             enemy.healing();
-            $$("#stamina-enemy").style.width = `${enemy.stamina}%`;
             break;
     }
 }
@@ -96,7 +94,6 @@ $$('#special-attack').addEventListener('click', function() {
 })
 $$('#heal-action').addEventListener('click', function() {
     player.healing();
-    $$("#stamina-player").style.width = `${player.stamina}%`;
     setTimeout(actionsEnemy, 500, randomAction);
 })
 
