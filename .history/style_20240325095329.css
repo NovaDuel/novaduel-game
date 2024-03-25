@@ -12,28 +12,25 @@ body {
 #status {
     display: flex;
     justify-content: space-between;
-    width: 100%;
+    width: 90%;
     height: 17%;
     background-color:blueviolet
 }
 
 .bars-wrapper {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
     width: 30%;
     height: 100%;
     background-color: greenyellow;
 }
 
 .health {
-    width: 100%;
+    width: 90%;
     height: 40%;
     background-color: pink;
 }
 
 .stamina {
-    width: 100%;
+    width: 90%;
     height: 40%;
     background-color: blue
 }
@@ -48,14 +45,7 @@ body {
 }
 
 .pj {
-    height: 70%;
+    height: 50%;
     width: 25%;
     background-color: white;
-}
-
-#actions {
-    height: 13%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
 }

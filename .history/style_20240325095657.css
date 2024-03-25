@@ -18,22 +18,20 @@ body {
 }
 
 .bars-wrapper {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
+    justify-content: center
     width: 30%;
     height: 100%;
     background-color: greenyellow;
 }
 
 .health {
-    width: 100%;
+    width: 90%;
     height: 40%;
     background-color: pink;
 }
 
 .stamina {
-    width: 100%;
+    width: 90%;
     height: 40%;
     background-color: blue
 }

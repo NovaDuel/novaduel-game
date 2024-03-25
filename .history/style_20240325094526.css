@@ -1,0 +1,24 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+
+#main-container {
+    width: 1024px;
+    height: 768px;
+    background-color: aquamarine;;
+}
+
+#status {
+    width: 90%;
+    height: 17%;
+    background-color:blueviolet
+}
+
+.bars-wrapper {
+    display: flex;
+    justify-content: space-between;
+    width: 30%;
+    height: 100%;
+    background-color: greenyellow;
+}

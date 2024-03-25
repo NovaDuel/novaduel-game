@@ -1,0 +1,30 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+
+#main-container {
+    width: 1024px;
+    height: 768px;
+    background-color: aquamarine;;
+}
+
+#status {
+    display: flex;
+    justify-content: space-between;
+    width: 90%;
+    height: 17%;
+    background-color:blueviolet
+}
+
+.bars-wrapper {
+    width: 30%;
+    height: 100%;
+    background-color: greenyellow;
+}
+
+.health {
+    width: 100%;
+    height: 50%;
+    background-color: pink;
+}

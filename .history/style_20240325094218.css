@@ -1,0 +1,21 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+
+#main-container {
+    width: 1024px;
+    height: 768px;
+    background-color: aquamarine;;
+}
+
+#status {
+    width: 90%;
+    height: 17%;
+    background-color:blueviolet
+}
+
+#bars-wrapper {
+    width:10%;
+    height: 100%
+}

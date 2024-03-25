@@ -19,8 +19,6 @@ body {
 
 .bars-wrapper {
     display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
     width: 30%;
     height: 100%;
     background-color: greenyellow;
