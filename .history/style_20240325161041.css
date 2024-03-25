@@ -54,21 +54,22 @@ body {
 
 .pj {
     height: 70%;
-    width: 25%;
+    width: 50%;
 }
 
 #player {
-    background-position-x: 100px;
-    background-position-y: 40px;
-    background-size: 250%;
+    background-position-x: 50px;
+    background-position-y: 80px;
+    background-size: 200%;
     background-repeat: no-repeat;
     background-image: url(./images/player.png)
 }
 
 #enemy {
-    background-position-x: -80px;
-    background-position-y: -80px;
-    background-size: 200%;
+    transform: scaleX(-1);
+    background-position-x: -50px;
+    background-size: 180%;
+    background-position: center;
     background-repeat: no-repeat;
     background-image: url(./images/enemy.png)
 }

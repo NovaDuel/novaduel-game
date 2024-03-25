@@ -58,17 +58,16 @@ body {
 }
 
 #player {
-    background-position-x: 100px;
-    background-position-y: 40px;
-    background-size: 250%;
+    background-position-x: 110px;
+    background-position-y: 80px;
+    background-size: 200%;
     background-repeat: no-repeat;
     background-image: url(./images/player.png)
 }
 
 #enemy {
-    background-position-x: -80px;
-    background-position-y: -80px;
-    background-size: 200%;
+    background-position-x: 80px;
+    background-size: 180%;
     background-repeat: no-repeat;
     background-image: url(./images/enemy.png)
 }

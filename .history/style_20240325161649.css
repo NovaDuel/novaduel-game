@@ -58,8 +58,8 @@ body {
 }
 
 #player {
-    background-position-x: 100px;
-    background-position-y: 40px;
+    background-position-x: 110px;
+    background-position-y: 60px;
     background-size: 250%;
     background-repeat: no-repeat;
     background-image: url(./images/player.png)

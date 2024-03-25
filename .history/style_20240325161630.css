@@ -55,12 +55,13 @@ body {
 .pj {
     height: 70%;
     width: 25%;
+    background-color: rgba(255, 255, 255, 0.52);
 }
 
 #player {
-    background-position-x: 100px;
-    background-position-y: 40px;
-    background-size: 250%;
+    background-position-x: 110px;
+    background-position-y: 80px;
+    background-size: 200%;
     background-repeat: no-repeat;
     background-image: url(./images/player.png)
 }
