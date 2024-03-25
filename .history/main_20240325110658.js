@@ -19,7 +19,7 @@ function Player (health, stamina, strength) {
     this.healing = function() {
         if (this.stamina >= 20) {
             this.stamina -= 20;
-            this.health += 50;
+            return this.health += 50;
         }
     }
 }
@@ -57,7 +57,4 @@ $$('#basic-attack').addEventListener('click', function() {
 $$('#special-attack').addEventListener('click', function() {
     let playerStrength = player.specialAttackPlayer();
     enemy.receiveDamage(playerStrength);
-})
-$$('#heal-action').addEventListener('click', function() {
-    player.healing();
 })

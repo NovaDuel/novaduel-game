@@ -16,12 +16,6 @@ function Player (health, stamina, strength) {
     this.receiveDamage = function(damage) {
         this.health -= damage;
     }
-    this.healing = function() {
-        if (this.stamina >= 20) {
-            this.stamina -= 20;
-            this.health += 50;
-        }
-    }
 }
 
 
@@ -31,12 +25,6 @@ function Enemy (health, stamina, strength) {
     this.strength = strength;
     this.attackEnemy = function() {
         return this.strength;
-    },
-    this.specialAttackPlayer = function() {
-        if (this.stamina >= 10) {
-            this.stamina -= 10;
-            return this.strength + 10 * Math.round(Math.random() * 3);
-        }
     },
     this.receiveDamage = function (damage) {
         this.health -= damage;
@@ -54,10 +42,11 @@ $$('#basic-attack').addEventListener('click', function() {
     let playerStrength = player.attackPlayer();
     enemy.receiveDamage(playerStrength);
 })
+console.log("stamina", player.stamina)
+console.log(enemy.health)
 $$('#special-attack').addEventListener('click', function() {
     let playerStrength = player.specialAttackPlayer();
     enemy.receiveDamage(playerStrength);
-})
-$$('#heal-action').addEventListener('click', function() {
-    player.healing();
+    console.log("stamina", player.stamina)
+    console.log(enemy.health)
 })

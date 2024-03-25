@@ -60,4 +60,5 @@ $$('#special-attack').addEventListener('click', function() {
 })
 $$('#heal-action').addEventListener('click', function() {
     player.healing();
+    console.log(player.health)
 })

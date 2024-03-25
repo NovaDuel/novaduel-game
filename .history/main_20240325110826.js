@@ -59,5 +59,5 @@ $$('#special-attack').addEventListener('click', function() {
     enemy.receiveDamage(playerStrength);
 })
 $$('#heal-action').addEventListener('click', function() {
-    player.healing();
+    
 })
