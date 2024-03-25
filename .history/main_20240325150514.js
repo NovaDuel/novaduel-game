@@ -133,7 +133,6 @@ selector('#special-attack').addEventListener('click', function() {
             button.removeAttribute("disabled", "")
         })
     }, 1000)
-    stateHealth();
 });
 selector('#heal-action').addEventListener('click', function() {
     player.healing();
@@ -142,20 +141,16 @@ selector('#heal-action').addEventListener('click', function() {
     })
     selector("#stamina-player").style.width = `${player.stamina}%`;
     setTimeout(actionsEnemy, 500);
-    setTimeout(function() {
-        buttons.forEach(button => {
-            button.removeAttribute("disabled", "")
-        })
-    }, 1000)
-    stateHealth();
+    setTimeout(actionsEnemy, 500);
+
 });
 
 
 function stateHealth() {
-    if(enemy.health === 0 || enemy.health < 0) {
+    if(enemy.health <= 0) {
         console.log('YOU WIN');
     }
-    if (player.health === 0 || player.health < 0) {
+    if (player.health <= 0) {
         console.log('GAME OVER');
     }
 }

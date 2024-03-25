@@ -133,7 +133,6 @@ selector('#special-attack').addEventListener('click', function() {
             button.removeAttribute("disabled", "")
         })
     }, 1000)
-    stateHealth();
 });
 selector('#heal-action').addEventListener('click', function() {
     player.healing();
@@ -147,15 +146,14 @@ selector('#heal-action').addEventListener('click', function() {
             button.removeAttribute("disabled", "")
         })
     }, 1000)
-    stateHealth();
 });
 
 
 function stateHealth() {
-    if(enemy.health === 0 || enemy.health < 0) {
+    if(enemy.health <= 0) {
         console.log('YOU WIN');
     }
-    if (player.health === 0 || player.health < 0) {
+    if (player.health <= 0) {
         console.log('GAME OVER');
     }
 }

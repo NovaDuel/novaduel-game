@@ -1,5 +1,4 @@
-const selector = selector => document.querySelector(selector);
-const selectAll = selector => document.querySelectorAll(selector);
+const $$ = selector => document.querySelector(selector);
 
 function Player (health, stamina, strength) {
     this.health = health;
@@ -65,13 +64,13 @@ function actionsEnemy() {
                 case 0:
                     let enemyStrength = enemy.attackEnemy();
                     player.receiveDamage(enemyStrength);
-                    selector("#health-player").style.width = `${player.health}%`; 
+                    $$("#health-player").style.width = `${player.health}%`; 
                     break;
                 case 1:
                     let specialEnemyStrength = enemy.specialAttackEnemy();
                     player.receiveDamage(specialEnemyStrength);
-                    selector("#health-player").style.width = `${player.health}%`; 
-                    selector("#stamina-enemy").style.width = `${enemy.stamina}%`;
+                    $$("#health-player").style.width = `${player.health}%`; 
+                    $$("#stamina-enemy").style.width = `${enemy.stamina}%`;
                     break;
             }
         } else {
@@ -80,17 +79,17 @@ function actionsEnemy() {
                 case 0:
                     let enemyStrength = enemy.attackEnemy();
                     player.receiveDamage(enemyStrength);
-                    selector("#health-player").style.width = `${player.health}%`; 
+                    $$("#health-player").style.width = `${player.health}%`; 
                     break;
                 case 1:
                     let specialEnemyStrength = enemy.specialAttackEnemy();
                     player.receiveDamage(specialEnemyStrength);
-                    selector("#health-player").style.width = `${player.health}%`; 
-                    selector("#stamina-enemy").style.width = `${enemy.stamina}%`;
+                    $$("#health-player").style.width = `${player.health}%`; 
+                    $$("#stamina-enemy").style.width = `${enemy.stamina}%`;
                     break;
                 case 2:
                     enemy.healing();
-                    selector("#stamina-enemy").style.width = `${enemy.stamina}%`;
+                    $$("#stamina-enemy").style.width = `${enemy.stamina}%`;
                     break;
             }
         }
@@ -98,64 +97,37 @@ function actionsEnemy() {
     } else {
         let enemyStrength = enemy.attackEnemy();
         player.receiveDamage(enemyStrength);
-        selector("#health-player").style.width = `${player.health}%`;  
+        $$("#health-player").style.width = `${player.health}%`;  
     }
 }
 
-let buttons = selectAll(".btn");
 
-selector('#basic-attack').addEventListener('click', function() {
+$$('#basic-attack').addEventListener('click', function() {
     let playerStrength = player.attackPlayer();
     enemy.receiveDamage(playerStrength);
-    buttons.forEach(button => {
-        button.setAttribute("disabled", "")
-    })
-    selector("#health-enemy").style.width = `${enemy.health}%`; 
+    $$("#health-enemy").style.width = `${enemy.health}%`; 
     setTimeout(actionsEnemy, 500);
-    setTimeout(function() {
-        buttons.forEach(button => {
-            button.removeAttribute("disabled", "")
-        })
-    }, 1000)
     stateHealth();
 });
-selector('#special-attack').addEventListener('click', function() {
+$$('#special-attack').addEventListener('click', function() {
     let playerStrength = player.specialAttackPlayer();
     enemy.receiveDamage(playerStrength);
-    buttons.forEach(button => {
-        button.setAttribute("disabled", "")
-    })
-    selector("#health-enemy").style.width = `${enemy.health}%`;
-    selector("#stamina-player").style.width = `${player.stamina}%`;
+    $$("#health-enemy").style.width = `${enemy.health}%`;
+    $$("#stamina-player").style.width = `${player.stamina}%`;
     setTimeout(actionsEnemy, 500);
-    setTimeout(function() {
-        buttons.forEach(button => {
-            button.removeAttribute("disabled", "")
-        })
-    }, 1000)
-    stateHealth();
 });
-selector('#heal-action').addEventListener('click', function() {
+$$('#heal-action').addEventListener('click', function() {
     player.healing();
-    buttons.forEach(button => {
-        button.setAttribute("disabled", "")
-    })
-    selector("#stamina-player").style.width = `${player.stamina}%`;
+    $$("#stamina-player").style.width = `${player.stamina}%`;
     setTimeout(actionsEnemy, 500);
-    setTimeout(function() {
-        buttons.forEach(button => {
-            button.removeAttribute("disabled", "")
-        })
-    }, 1000)
-    stateHealth();
 });
 
 
 function stateHealth() {
-    if(enemy.health === 0 || enemy.health < 0) {
+    if(enemy.health <= 0) {
         console.log('YOU WIN');
     }
-    if (player.health === 0 || player.health < 0) {
+    if (player.health <= 0) {
         console.log('GAME OVER');
     }
 }

@@ -152,10 +152,10 @@ selector('#heal-action').addEventListener('click', function() {
 
 
 function stateHealth() {
-    if(enemy.health === 0 || enemy.health < 0) {
+    if(enemy.health === 0) {
         console.log('YOU WIN');
     }
-    if (player.health === 0 || player.health < 0) {
+    if (player.health === 0) {
         console.log('GAME OVER');
     }
 }

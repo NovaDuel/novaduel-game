@@ -1,5 +1,5 @@
 const selector = selector => document.querySelector(selector);
-const selectAll = selector => document.querySelectorAll(selector);
+//const selectAll = selector => document.querySelectorAll(selector);
 
 function Player (health, stamina, strength) {
     this.health = health;
@@ -102,60 +102,33 @@ function actionsEnemy() {
     }
 }
 
-let buttons = selectAll(".btn");
 
 selector('#basic-attack').addEventListener('click', function() {
     let playerStrength = player.attackPlayer();
     enemy.receiveDamage(playerStrength);
-    buttons.forEach(button => {
-        button.setAttribute("disabled", "")
-    })
     selector("#health-enemy").style.width = `${enemy.health}%`; 
     setTimeout(actionsEnemy, 500);
-    setTimeout(function() {
-        buttons.forEach(button => {
-            button.removeAttribute("disabled", "")
-        })
-    }, 1000)
     stateHealth();
 });
 selector('#special-attack').addEventListener('click', function() {
     let playerStrength = player.specialAttackPlayer();
     enemy.receiveDamage(playerStrength);
-    buttons.forEach(button => {
-        button.setAttribute("disabled", "")
-    })
     selector("#health-enemy").style.width = `${enemy.health}%`;
     selector("#stamina-player").style.width = `${player.stamina}%`;
     setTimeout(actionsEnemy, 500);
-    setTimeout(function() {
-        buttons.forEach(button => {
-            button.removeAttribute("disabled", "")
-        })
-    }, 1000)
-    stateHealth();
 });
 selector('#heal-action').addEventListener('click', function() {
     player.healing();
-    buttons.forEach(button => {
-        button.setAttribute("disabled", "")
-    })
     selector("#stamina-player").style.width = `${player.stamina}%`;
     setTimeout(actionsEnemy, 500);
-    setTimeout(function() {
-        buttons.forEach(button => {
-            button.removeAttribute("disabled", "")
-        })
-    }, 1000)
-    stateHealth();
 });
 
 
 function stateHealth() {
-    if(enemy.health === 0 || enemy.health < 0) {
+    if(enemy.health <= 0) {
         console.log('YOU WIN');
     }
-    if (player.health === 0 || player.health < 0) {
+    if (player.health <= 0) {
         console.log('GAME OVER');
     }
 }
