@@ -1,11 +1,57 @@
-import { Player } from "./modules/player.js";
-import { Enemy } from "./modules/enemy.js";
-
 const selector = selector => document.querySelector(selector);
 const selectAll = selector => document.querySelectorAll(selector);
 let basicAttackBtn = selector('#basic-attack')
 let specialAttackBtn = selector('#special-attack');
 let healBtn = selector('#heal-action');
+
+function Player (health, stamina, strength) {
+    this.health = health;
+    this.stamina = stamina;
+    this.strength = strength;
+    this.attackPlayer = function() {
+        return this.strength;
+    },
+    this.specialAttackPlayer = function() {
+        if (this.stamina >= 10) {
+            this.stamina -= 10;
+            return this.strength + 10 * Math.round(Math.random() * 3);
+        }
+    },
+    this.receiveDamage = function(damage) {
+        this.health -= damage;
+    }
+    this.healing = function() {
+        if (this.stamina >= 20) {
+            this.stamina -= 20;
+            this.health += 30;
+        }
+    }
+}
+
+
+function Enemy (health, stamina, strength) {
+    this.health = health;
+    this.stamina = stamina;
+    this.strength = strength;
+    this.attackEnemy = function() {
+        return this.strength;
+    },
+    this.specialAttackEnemy = function() {
+        if (this.stamina >= 10) {
+            this.stamina -= 10;
+            return this.strength + 10 * Math.round(Math.random() * 3);
+        }
+    },
+    this.receiveDamage = function (damage) {
+        this.health -= damage;
+    },
+    this.healing = function() {
+        if (this.stamina >= 20) {
+            this.stamina -= 20;
+            this.health += 30;
+        }
+    }
+}
 
 let player = new Player(100, 100, 20);
 let enemy = new Enemy(100, 100, 18);
@@ -132,15 +178,6 @@ function stateHealth() {
     }
     if (player.health > 70){
         healBtn.setAttribute("disabled", "");
-        healBtn.addEventListener('mouseover', (e) => {
-            e.target.setAttribute("title", "You are already healed");
-        });
-    }
-    
-    if (player.health <= 70) {
-        healBtn.addEventListener('mouseover', (e) => {
-            e.target.setAttribute("title", "You can heal");
-        });
     }
 };
 
@@ -148,13 +185,10 @@ function stateStamina() {
     if (player.stamina < 20) {
         healBtn.setAttribute("disabled", "");
         healBtn.addEventListener('mouseover', (e) => {
-            e.target.setAttribute("title", "You don't have enough stamina");
-        });
+            e.target.setAttribute("title", "Hello")
+        })
     } 
     if (player.stamina < 10) {
         specialAttackBtn.setAttribute("disabled", "");
-        specialAttackBtn.addEventListener('mouseover', (e) => {
-            e.target.setAttribute("title", "You don't have enough stamina");
-        });
     }
 }
