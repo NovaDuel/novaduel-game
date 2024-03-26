@@ -76,7 +76,7 @@ function actionsEnemy() {
         }
     updateBars();
     stateHealth();
-    enemyWins();
+    endGame();
 }
 
 let buttons = selectAll(".btn");
@@ -132,6 +132,7 @@ healBtn.addEventListener('click', function() {
             });
         }, 1000)
         updateBars();
+        playerWins();
     }
 });
 

@@ -132,6 +132,7 @@ healBtn.addEventListener('click', function() {
             });
         }, 1000)
         updateBars();
+        playerWins();
     }
 });
 

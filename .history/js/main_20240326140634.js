@@ -76,7 +76,6 @@ function actionsEnemy() {
         }
     updateBars();
     stateHealth();
-    enemyWins();
 }
 
 let buttons = selectAll(".btn");
@@ -96,7 +95,6 @@ basicAttackBtn.addEventListener('click', function() {
         });
     }, 1000);
     updateBars();
-    playerWins();
 });
 specialAttackBtn.addEventListener('click', function() {
     let playerStrength = player.specialAttackPlayer();
@@ -113,7 +111,6 @@ specialAttackBtn.addEventListener('click', function() {
         })
     }, 1000)
     updateBars();
-    playerWins();
 });
 healBtn.addEventListener('click', function() {
     if (player.health > 70 || player.stamina === 0) {
@@ -166,35 +163,3 @@ function stateStamina() {
     }
 }
 
-function enemyWins() {
-    if (player.health <= 0) {
-        selector("#main-container").style.display = 'none';
-        let gameOver = document.createElement("div");
-        gameOver.setAttribute("id", "game-over");
-        gameOver.classList.add("end-screen");
-        let gameOverText = document.createElement("h1");
-        gameOverText.textContent = "GAME OVER";
-        let retryBtn = document.createElement("button");
-        retryBtn.setAttribute("id", "retry-btn");
-        retryBtn.textContent = "TRY AGAIN";
-        gameOver.appendChild(gameOverText);
-        gameOver.appendChild(retryBtn);
-        document.body.appendChild(gameOver);
-    } 
-}   
-  function playerWins() { 
-    if (enemy.health <= 0) {
-        selector("#main-container").style.display = 'none';
-        let victory = document.createElement("div");
-        victory.setAttribute("id", "victory");
-        victory.classList.add("end-screen");
-        let victoryText = document.createElement("h1");
-        victoryText.textContent = "YOU WIN";
-        let retryBtn = document.createElement("button");
-        retryBtn.setAttribute("id", "retry-btn");
-        retryBtn.textContent = "PLAY AGAIN";
-        victory.appendChild(victoryText);
-        victory.appendChild(retryBtn);
-        document.body.appendChild(victory);
-    }
-}

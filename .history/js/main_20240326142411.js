@@ -76,7 +76,7 @@ function actionsEnemy() {
         }
     updateBars();
     stateHealth();
-    enemyWins();
+    endGame();
 }
 
 let buttons = selectAll(".btn");
@@ -96,7 +96,7 @@ basicAttackBtn.addEventListener('click', function() {
         });
     }, 1000);
     updateBars();
-    playerWins();
+    endGame();
 });
 specialAttackBtn.addEventListener('click', function() {
     let playerStrength = player.specialAttackPlayer();
@@ -113,7 +113,7 @@ specialAttackBtn.addEventListener('click', function() {
         })
     }, 1000)
     updateBars();
-    playerWins();
+    endGame();
 });
 healBtn.addEventListener('click', function() {
     if (player.health > 70 || player.stamina === 0) {
@@ -132,6 +132,7 @@ healBtn.addEventListener('click', function() {
             });
         }, 1000)
         updateBars();
+        endGame();
     }
 });
 
