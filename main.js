@@ -178,6 +178,15 @@ function stateHealth() {
     }
     if (player.health > 70){
         healBtn.setAttribute("disabled", "");
+        healBtn.addEventListener('mouseover', (e) => {
+            e.target.setAttribute("title", "You are already healed");
+        });
+    }
+    
+    if (player.health <= 70) {
+        healBtn.addEventListener('mouseover', (e) => {
+            e.target.setAttribute("title", "You can heal");
+        });
     }
 };
 
@@ -185,10 +194,13 @@ function stateStamina() {
     if (player.stamina < 20) {
         healBtn.setAttribute("disabled", "");
         healBtn.addEventListener('mouseover', (e) => {
-            e.target.setAttribute("title", "Hello")
-        })
+            e.target.setAttribute("title", "You don't have enough stamina");
+        });
     } 
     if (player.stamina < 10) {
         specialAttackBtn.setAttribute("disabled", "");
+        specialAttackBtn.addEventListener('mouseover', (e) => {
+            e.target.setAttribute("title", "You don't have enough stamina");
+        });
     }
 }
