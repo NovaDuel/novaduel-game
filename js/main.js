@@ -181,6 +181,7 @@ function enemyWins() {
         gameOver.appendChild(gameOverText);
         gameOver.appendChild(retryBtn);
         document.body.appendChild(gameOver);
+        tryAgain(selector("#retry-btn"), selector('.end-screen'));
     } 
 }   
 
@@ -199,5 +200,18 @@ function playerWins() {
         victory.appendChild(victoryText);
         victory.appendChild(retryBtn);
         document.body.appendChild(victory);
+        tryAgain(selector("#retry-btn"), selector('.end-screen'));
     }
+}
+
+function tryAgain(buttonRetry, screen) {
+    buttonRetry.addEventListener('click', () => {
+        screen.style.display = 'none';
+        player.health = 100;
+        enemy.health = 100;
+        player.stamina = 100;
+        enemy.stamina = 100;
+        updateBars();
+        selector("#main-container").style.display = 'block';
+    });
 }
