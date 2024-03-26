@@ -119,12 +119,11 @@ selector('#basic-attack').addEventListener('click', function() {
     buttons.forEach(button => {
         button.setAttribute("disabled", "")
     });
-    setTimeout(actionsEnemy, 800);
+    setTimeout(actionsEnemy, 500);
     setTimeout(function() {
         buttons.forEach(button => {
             button.removeAttribute("disabled", "");
             stateHealth();
-            stateStamina()
         });
     }, 1000);
     updateBars();
@@ -135,12 +134,11 @@ selector('#special-attack').addEventListener('click', function() {
     buttons.forEach(button => {
         button.setAttribute("disabled", "")
     })
-    setTimeout(actionsEnemy, 800);
+    setTimeout(actionsEnemy, 500);
     setTimeout(function() {
         buttons.forEach(button => {
             button.removeAttribute("disabled", "")
             stateHealth();
-            stateStamina()
         })
     }, 1000)
     updateBars();
@@ -153,12 +151,11 @@ selector('#heal-action').addEventListener('click', function() {
         buttons.forEach(button => {
             button.setAttribute("disabled", "");
         })
-        setTimeout(actionsEnemy, 800);
+        setTimeout(actionsEnemy, 500);
         setTimeout(function() {
             buttons.forEach(button => {
                 button.removeAttribute("disabled", "")
                 stateHealth();
-                stateStamina()
             });
         }, 1000)
         updateBars();
@@ -181,8 +178,7 @@ function stateHealth() {
 function stateStamina() {
     if (player.stamina < 20) {
         selector('#heal-action').setAttribute("disabled", "");
-    } 
-    if (player.stamina < 10) {
+    } else if (player.stamina < 10) {
         selector('#special-attack').setAttribute("disabled", "");
     }
 }

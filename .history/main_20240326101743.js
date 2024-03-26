@@ -70,6 +70,7 @@ function updateBars() {
 
 updateBars();
 stateHealth();
+stateStamina();
 
 function actionsEnemy() {
     if (enemy.stamina >= 10) {
@@ -109,6 +110,7 @@ function actionsEnemy() {
         }
     updateBars();
     stateHealth();
+    stateStamina()
 }
 
 let buttons = selectAll(".btn");

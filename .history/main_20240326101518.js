@@ -70,6 +70,7 @@ function updateBars() {
 
 updateBars();
 stateHealth();
+stateStamina();
 
 function actionsEnemy() {
     if (enemy.stamina >= 10) {
@@ -109,6 +110,7 @@ function actionsEnemy() {
         }
     updateBars();
     stateHealth();
+    stateStamina()
 }
 
 let buttons = selectAll(".btn");
@@ -181,8 +183,10 @@ function stateHealth() {
 function stateStamina() {
     if (player.stamina < 20) {
         selector('#heal-action').setAttribute("disabled", "");
-    } 
-    if (player.stamina < 10) {
+    } else if (player.stamina < 10) {
+        selector('#special-attack').setAttribute("disabled", "");
+    } else if (player.stamina === 0) {
+        selector('#heal-action').setAttribute("disabled", "");
         selector('#special-attack').setAttribute("disabled", "");
     }
 }

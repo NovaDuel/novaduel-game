@@ -69,7 +69,6 @@ function updateBars() {
 }
 
 updateBars();
-stateHealth();
 
 function actionsEnemy() {
     if (enemy.stamina >= 10) {
@@ -108,7 +107,6 @@ function actionsEnemy() {
             // selector('#health-player').textContent = player.health;
         }
     updateBars();
-    stateHealth();
 }
 
 let buttons = selectAll(".btn");
@@ -118,15 +116,14 @@ selector('#basic-attack').addEventListener('click', function() {
     enemy.receiveDamage(playerStrength);
     buttons.forEach(button => {
         button.setAttribute("disabled", "")
-    });
-    setTimeout(actionsEnemy, 800);
+    })
+    setTimeout(actionsEnemy, 500);
     setTimeout(function() {
         buttons.forEach(button => {
-            button.removeAttribute("disabled", "");
-            stateHealth();
-            stateStamina()
+            button.removeAttribute("disabled", "")
         });
-    }, 1000);
+    }, 1000)
+    stateHealth();
     updateBars();
 });
 selector('#special-attack').addEventListener('click', function() {
@@ -135,32 +132,30 @@ selector('#special-attack').addEventListener('click', function() {
     buttons.forEach(button => {
         button.setAttribute("disabled", "")
     })
-    setTimeout(actionsEnemy, 800);
+    setTimeout(actionsEnemy, 500);
     setTimeout(function() {
         buttons.forEach(button => {
             button.removeAttribute("disabled", "")
-            stateHealth();
-            stateStamina()
         })
     }, 1000)
+    stateHealth();
     updateBars();
 });
 selector('#heal-action').addEventListener('click', function() {
-    if (player.health > 70 || player.stamina === 0) {
-        alert("No puedes curarte ahora mismo");
+    if (player.health >= 100 || player.stamina === 0) {
+        alert("No puedes curarte ahora mismo")
     } else {
         player.healing();
         buttons.forEach(button => {
-            button.setAttribute("disabled", "");
+            button.setAttribute("disabled", "")
         })
-        setTimeout(actionsEnemy, 800);
+        setTimeout(actionsEnemy, 500);
         setTimeout(function() {
             buttons.forEach(button => {
                 button.removeAttribute("disabled", "")
-                stateHealth();
-                stateStamina()
-            });
+            })
         }, 1000)
+        stateHealth();
         updateBars();
     }
 });
@@ -168,21 +163,9 @@ selector('#heal-action').addEventListener('click', function() {
 
 function stateHealth() {
     if(enemy.health <= 0) {
-        //alert('YOU WIN');
+        alert('YOU WIN');
     }
     if (player.health <= 0) {
-        //alert('GAME OVER');
-    }
-    if (player.health > 70){
-        selector('#heal-action').setAttribute("disabled", "");
-    }
-};
-
-function stateStamina() {
-    if (player.stamina < 20) {
-        selector('#heal-action').setAttribute("disabled", "");
-    } 
-    if (player.stamina < 10) {
-        selector('#special-attack').setAttribute("disabled", "");
+        alert('GAME OVER');
     }
 }
