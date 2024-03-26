@@ -195,12 +195,12 @@ function playerWins() {
         let victoryText = document.createElement("h1");
         victoryText.textContent = "YOU WIN";
         let retryBtn = document.createElement("button");
-        retryBtn.setAttribute("id", "retry-btn");
+        retryBtn.setAttribute("id", "play-again");
         retryBtn.textContent = "PLAY AGAIN";
         victory.appendChild(victoryText);
         victory.appendChild(retryBtn);
         document.body.appendChild(victory);
-        tryAgain(selector("#retry-btn"), selector('.end-screen'));
+        tryAgain(selector("#play-again"), selector('.end-screen'));
     }
 }
 
