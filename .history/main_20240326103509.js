@@ -184,8 +184,8 @@ function stateHealth() {
 function stateStamina() {
     if (player.stamina < 20) {
         healBtn.setAttribute("disabled", "");
-        healBtn.addEventListener('mouseover', (e) => {
-            e.target.setAttribute("title", "Hello")
+        healBtn.addEventListener('mouseove', function () {
+            
         })
     } 
     if (player.stamina < 10) {

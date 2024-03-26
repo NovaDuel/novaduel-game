@@ -186,6 +186,7 @@ function stateStamina() {
         healBtn.setAttribute("disabled", "");
         healBtn.addEventListener('mouseover', (e) => {
             e.target.setAttribute("title", "Hello")
+            e.target.style.cursor = "pointer";
         })
     } 
     if (player.stamina < 10) {

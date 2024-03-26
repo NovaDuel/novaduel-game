@@ -1,8 +1,6 @@
 const selector = selector => document.querySelector(selector);
 const selectAll = selector => document.querySelectorAll(selector);
-let basicAttackBtn = selector('#basic-attack')
-let specialAttackBtn = selector('#special-attack');
-let healBtn = selector('#heal-action');
+let healBtn = selector("#heal-action");
 
 function Player (health, stamina, strength) {
     this.health = health;
@@ -116,7 +114,7 @@ function actionsEnemy() {
 
 let buttons = selectAll(".btn");
 
-basicAttackBtn.addEventListener('click', function() {
+selector('#basic-attack').addEventListener('click', function() {
     let playerStrength = player.attackPlayer();
     enemy.receiveDamage(playerStrength);
     buttons.forEach(button => {
@@ -132,7 +130,7 @@ basicAttackBtn.addEventListener('click', function() {
     }, 1000);
     updateBars();
 });
-specialAttackBtn.addEventListener('click', function() {
+selector('#special-attack').addEventListener('click', function() {
     let playerStrength = player.specialAttackPlayer();
     enemy.receiveDamage(playerStrength);
     buttons.forEach(button => {
@@ -148,7 +146,7 @@ specialAttackBtn.addEventListener('click', function() {
     }, 1000)
     updateBars();
 });
-healBtn.addEventListener('click', function() {
+selector('#heal-action').addEventListener('click', function() {
     if (player.health > 70 || player.stamina === 0) {
         alert("No puedes curarte ahora mismo");
     } else {
@@ -184,11 +182,9 @@ function stateHealth() {
 function stateStamina() {
     if (player.stamina < 20) {
         healBtn.setAttribute("disabled", "");
-        healBtn.addEventListener('mouseover', (e) => {
-            e.target.setAttribute("title", "Hello")
-        })
+        healBtn
     } 
     if (player.stamina < 10) {
-        specialAttackBtn.setAttribute("disabled", "");
+        selector('#special-attack').setAttribute("disabled", "");
     }
 }

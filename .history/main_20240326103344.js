@@ -184,11 +184,8 @@ function stateHealth() {
 function stateStamina() {
     if (player.stamina < 20) {
         healBtn.setAttribute("disabled", "");
-        healBtn.addEventListener('mouseover', (e) => {
-            e.target.setAttribute("title", "Hello")
-        })
     } 
     if (player.stamina < 10) {
-        specialAttackBtn.setAttribute("disabled", "");
+        selector('#special-attack').setAttribute("disabled", "");
     }
 }

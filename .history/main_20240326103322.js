@@ -116,7 +116,7 @@ function actionsEnemy() {
 
 let buttons = selectAll(".btn");
 
-basicAttackBtn.addEventListener('click', function() {
+selector('#basic-attack').addEventListener('click', function() {
     let playerStrength = player.attackPlayer();
     enemy.receiveDamage(playerStrength);
     buttons.forEach(button => {
@@ -132,7 +132,7 @@ basicAttackBtn.addEventListener('click', function() {
     }, 1000);
     updateBars();
 });
-specialAttackBtn.addEventListener('click', function() {
+selector('#special-attack').addEventListener('click', function() {
     let playerStrength = player.specialAttackPlayer();
     enemy.receiveDamage(playerStrength);
     buttons.forEach(button => {
@@ -184,11 +184,8 @@ function stateHealth() {
 function stateStamina() {
     if (player.stamina < 20) {
         healBtn.setAttribute("disabled", "");
-        healBtn.addEventListener('mouseover', (e) => {
-            e.target.setAttribute("title", "Hello")
-        })
     } 
     if (player.stamina < 10) {
-        specialAttackBtn.setAttribute("disabled", "");
+        selector('#special-attack').setAttribute("disabled", "");
     }
 }
