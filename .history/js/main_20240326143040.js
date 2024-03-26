@@ -186,7 +186,7 @@ function enemyWins() {
 
 function playerWins() { 
     if (enemy.health <= 0) {
-        clearTimeout(enemyTimeOut);
+        clearTimeout(enemyTimeOut)
         selector("#main-container").style.display = 'none';
         let victory = document.createElement("div");
         victory.setAttribute("id", "victory");

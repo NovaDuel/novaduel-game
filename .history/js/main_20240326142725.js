@@ -80,7 +80,6 @@ function actionsEnemy() {
 }
 
 let buttons = selectAll(".btn");
-let enemyTimeOut;
 
 basicAttackBtn.addEventListener('click', function() {
     let playerStrength = player.attackPlayer();
@@ -88,7 +87,7 @@ basicAttackBtn.addEventListener('click', function() {
     buttons.forEach(button => {
         button.setAttribute("disabled", "")
     });
-    enemyTimeOut = setTimeout(actionsEnemy, 800);
+    setTimeout(actionsEnemy, 800);
     setTimeout(function() {
         buttons.forEach(button => {
             button.removeAttribute("disabled", "");
@@ -105,7 +104,7 @@ specialAttackBtn.addEventListener('click', function() {
     buttons.forEach(button => {
         button.setAttribute("disabled", "")
     })
-    enemyTimeOut = setTimeout(actionsEnemy, 800);
+    setTimeout(actionsEnemy, 800);
     setTimeout(function() {
         buttons.forEach(button => {
             button.removeAttribute("disabled", "")
@@ -124,7 +123,7 @@ healBtn.addEventListener('click', function() {
         buttons.forEach(button => {
             button.setAttribute("disabled", "");
         })
-        enemyTimeOut = setTimeout(actionsEnemy, 800);
+        setTimeout(actionsEnemy, 800);
         setTimeout(function() {
             buttons.forEach(button => {
                 button.removeAttribute("disabled", "")
@@ -186,7 +185,6 @@ function enemyWins() {
 
 function playerWins() { 
     if (enemy.health <= 0) {
-        clearTimeout(enemyTimeOut);
         selector("#main-container").style.display = 'none';
         let victory = document.createElement("div");
         victory.setAttribute("id", "victory");

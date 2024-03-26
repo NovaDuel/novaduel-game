@@ -39,6 +39,7 @@ updateBars();
 stateHealth();
 
 function actionsEnemy() {
+    console.log('acción enemigo')
     if (enemy.stamina >= 10) {
         if (enemy.health > 70) {
             let randomAction = Math.floor(Math.random() * 2);
