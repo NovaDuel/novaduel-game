@@ -68,8 +68,6 @@ function updateBars() {
     selector('#stamina-enemy').textContent = enemy.stamina;
 }
 
-updateBars();
-
 function actionsEnemy() {
     if (enemy.stamina >= 10) {
         if (enemy.health > 70) {

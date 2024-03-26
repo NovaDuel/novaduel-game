@@ -68,8 +68,6 @@ function updateBars() {
     selector('#stamina-enemy').textContent = enemy.stamina;
 }
 
-updateBars();
-
 function actionsEnemy() {
     if (enemy.stamina >= 10) {
         if (enemy.health > 70) {
@@ -149,6 +147,9 @@ selector('#heal-action').addEventListener('click', function() {
         buttons.forEach(button => {
             button.setAttribute("disabled", "")
         })
+        selector("#stamina-player").style.width = `${player.stamina}%`;
+        selector('#stamina-player').textContent = player.stamina;
+        selector('#health-player').textContent = player.health;
         setTimeout(actionsEnemy, 500);
         setTimeout(function() {
             buttons.forEach(button => {
@@ -156,7 +157,6 @@ selector('#heal-action').addEventListener('click', function() {
             })
         }, 1000)
         stateHealth();
-        updateBars();
     }
 });
 

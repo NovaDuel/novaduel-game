@@ -67,7 +67,6 @@ function updateBars() {
     selector('#health-enemy').textContent = enemy.health;
     selector('#stamina-enemy').textContent = enemy.stamina;
 }
-
 updateBars();
 
 function actionsEnemy() {
