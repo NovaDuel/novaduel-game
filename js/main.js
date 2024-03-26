@@ -10,6 +10,20 @@ let healBtn = selector('#heal-action');
 let player = new Player(100, 100, 20);
 let enemy = new Enemy(100, 100, 18);
 
+function createPrincipalLayer() {
+    selector("#main-container").style.display = 'none';
+    let createButton = document.createElement('button');
+    createButton.classList.add('start-button');
+    createButton.textContent = 'START';
+    document.body.appendChild(createButton);
+
+    selector('.start-button').addEventListener('click', () => {
+        selector("#main-container").style.display = 'block';
+        selector(".start-button").style.display = 'none';
+    });
+}
+
+
 function updateBars() {
     selector("#health-player").style.width = `${player.health}%`;
     selector("#stamina-player").style.width = `${player.stamina}%`;
@@ -20,7 +34,7 @@ function updateBars() {
     selector('#health-enemy').textContent = enemy.health;
     selector('#stamina-enemy').textContent = enemy.stamina;
 }
-
+createPrincipalLayer();
 updateBars();
 stateHealth();
 
@@ -154,3 +168,4 @@ function stateStamina() {
         });
     }
 }
+
