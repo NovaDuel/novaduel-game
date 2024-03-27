@@ -12,7 +12,7 @@ body {
     width: 1024px;
     height: 768px;
     border-radius: 4px;
-    border: 20px double rgba(82, 82, 82, 0.976);
+    border: 15px double rgba(82, 82, 82, 0.976);
     background-size: cover;
     background-image: url(./images/scenario.jpg);
 }
@@ -81,8 +81,4 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-}
-
-button {
-    cursor: pointer;
 }

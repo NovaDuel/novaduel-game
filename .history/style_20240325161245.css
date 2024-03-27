@@ -5,14 +5,11 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    background-image: url(./images/background.avif);
 }
 
 #main-container {
     width: 1024px;
     height: 768px;
-    border-radius: 4px;
-    border: 20px double rgba(82, 82, 82, 0.976);
     background-size: cover;
     background-image: url(./images/scenario.jpg);
 }
@@ -61,17 +58,18 @@ body {
 }
 
 #player {
-    background-position-x: 100px;
-    background-position-y: 40px;
-    background-size: 250%;
+    background-position-x: 50px;
+    background-position-y: 80px;
+    background-size: 20%;
     background-repeat: no-repeat;
     background-image: url(./images/player.png)
 }
 
 #enemy {
-    background-position-x: -80px;
-    background-position-y: -80px;
-    background-size: 200%;
+    transform: scaleX(-1);
+    background-position-x: -50px;
+    background-size: 180%;
+    background-position: center;
     background-repeat: no-repeat;
     background-image: url(./images/enemy.png)
 }
@@ -81,8 +79,4 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-}
-
-button {
-    cursor: pointer;
 }
