@@ -233,7 +233,7 @@ function tryAgain(buttonRetry, screen) {
 selector("#volume").onclick = () => {
     if (volumeOn === false) {
         menuMusic.volume = 1;
-        battleMusic.volume = 0.3;
+        battleMusic.volume = 1;
         volumeOn = true;
     } else if (volumeOn === true) {
         menuMusic.volume = 0;
