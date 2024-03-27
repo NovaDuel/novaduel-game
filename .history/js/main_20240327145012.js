@@ -21,11 +21,12 @@ function createPrincipalLayer() {
     let volumeButton = document.createElement('button');
     startButton.classList.add('start-button');
     startButton.textContent = 'START';
-    volumeButton.setAttribute('id', 'volume');
-    volumeButton.textContent = 'VOLUME';
+    startButton.setAttribute('id', 'volume');
+    startButton.textContent = 'VOLUME';
     document.body.appendChild(startButton);
     document.body.appendChild(volumeButton);
     playMusic();
+
     selector('.start-button').addEventListener('click', () => {
         selector("#main-container").style.display = 'block';
         selector(".start-button").style.display = 'none';

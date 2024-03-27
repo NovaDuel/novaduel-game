@@ -26,6 +26,7 @@ function createPrincipalLayer() {
     document.body.appendChild(startButton);
     document.body.appendChild(volumeButton);
     playMusic();
+
     selector('.start-button').addEventListener('click', () => {
         selector("#main-container").style.display = 'block';
         selector(".start-button").style.display = 'none';

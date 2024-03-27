@@ -17,15 +17,12 @@ let enemy = new Enemy(100, 100, 18);
 
 function createPrincipalLayer() {
     selector("#main-container").style.display = 'none';
-    let startButton = document.createElement('button');
-    let volumeButton = document.createElement('button');
-    startButton.classList.add('start-button');
-    startButton.textContent = 'START';
-    volumeButton.setAttribute('id', 'volume');
-    volumeButton.textContent = 'VOLUME';
-    document.body.appendChild(startButton);
-    document.body.appendChild(volumeButton);
+    let createButton = document.createElement('button');
+    createButton.classList.add('start-button');
+    createButton.textContent = 'START';
+    document.body.appendChild(createButton);
     playMusic();
+
     selector('.start-button').addEventListener('click', () => {
         selector("#main-container").style.display = 'block';
         selector(".start-button").style.display = 'none';
@@ -229,19 +226,18 @@ function tryAgain(buttonRetry, screen) {
     });
 }
 
-
-selector("#volume").onclick = () => {
-    if (volumeOn === false) {
-        menuMusic.volume = 1;
-        battleMusic.volume = 1;
-        volumeOn = true;
-    } else if (volumeOn === true) {
-        menuMusic.volume = 0;
-        battleMusic.volume = 0;
-        volumeOn = false;
+function setVolume () {
+    selector("#volume").onclick = () => {
+        let volumeOn = false;
+        if (volumeOn === false) {
+            menuMusic.volume = 1;
+            battleMusic.volume = 1;
+        } else if (volumeOn === true) {
+            menuMusic.volume = 0;
+            battleMusic.volume = 0;
+        }
     }
 }
-
 
 function playMusic() {
     if (menuMusicIsPlaying === false) {

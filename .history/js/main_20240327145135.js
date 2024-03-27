@@ -25,7 +25,7 @@ function createPrincipalLayer() {
     volumeButton.textContent = 'VOLUME';
     document.body.appendChild(startButton);
     document.body.appendChild(volumeButton);
-    playMusic();
+
     selector('.start-button').addEventListener('click', () => {
         selector("#main-container").style.display = 'block';
         selector(".start-button").style.display = 'none';
@@ -235,6 +235,7 @@ selector("#volume").onclick = () => {
         menuMusic.volume = 1;
         battleMusic.volume = 1;
         volumeOn = true;
+        playMusic();
     } else if (volumeOn === true) {
         menuMusic.volume = 0;
         battleMusic.volume = 0;

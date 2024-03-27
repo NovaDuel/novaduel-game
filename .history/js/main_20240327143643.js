@@ -9,27 +9,24 @@ battleMusic.volume = 0.3;
 let basicAttackBtn = selector('#basic-attack');
 let specialAttackBtn = selector('#special-attack');
 let healBtn = selector('#heal-action');
-let menuMusicIsPlaying = false;
-let volumeOn = false;
 
 let player = new Player(100, 100, 20);
 let enemy = new Enemy(100, 100, 18);
 
 function createPrincipalLayer() {
     selector("#main-container").style.display = 'none';
-    let startButton = document.createElement('button');
-    let volumeButton = document.createElement('button');
-    startButton.classList.add('start-button');
-    startButton.textContent = 'START';
-    volumeButton.setAttribute('id', 'volume');
-    volumeButton.textContent = 'VOLUME';
-    document.body.appendChild(startButton);
-    document.body.appendChild(volumeButton);
-    playMusic();
+    let createButton = document.createElement('button');
+    createButton.classList.add('start-button');
+    createButton.textContent = 'START';
+    document.body.appendChild(createButton);
+    menuMusic.play();
+
     selector('.start-button').addEventListener('click', () => {
         selector("#main-container").style.display = 'block';
         selector(".start-button").style.display = 'none';
-        playMusic();
+        menuMusic.pause();
+        menuMusic.currentTime = 0;
+        battleMusic.play();
     });
 }
 
@@ -179,7 +176,9 @@ function stateStamina() {
 
 function enemyWins() {
     if (player.health <= 0) {
-        playMusic();
+        battleMusic.pause();
+        battleMusic.currentTime = 0;
+        menuMusic.play();
         selector("#main-container").style.display = 'none';
         let gameOver = document.createElement("div");
         gameOver.setAttribute("id", "game-over");
@@ -198,7 +197,6 @@ function enemyWins() {
 
 function playerWins() { 
     if (enemy.health <= 0) {
-        playMusic();
         clearTimeout(enemyTimeOut);
         selector("#main-container").style.display = 'none';
         let victory = document.createElement("div");
@@ -218,7 +216,6 @@ function playerWins() {
 
 function tryAgain(buttonRetry, screen) {
     buttonRetry.addEventListener('click', () => {
-        playMusic();
         screen.remove();
         player.health = 100;
         enemy.health = 100;
@@ -227,32 +224,4 @@ function tryAgain(buttonRetry, screen) {
         updateBars();
         selector("#main-container").style.display = 'block';
     });
-}
-
-
-selector("#volume").onclick = () => {
-    if (volumeOn === false) {
-        menuMusic.volume = 1;
-        battleMusic.volume = 1;
-        volumeOn = true;
-    } else if (volumeOn === true) {
-        menuMusic.volume = 0;
-        battleMusic.volume = 0;
-        volumeOn = false;
-    }
-}
-
-
-function playMusic() {
-    if (menuMusicIsPlaying === false) {
-        battleMusic.pause();
-        battleMusic.currentTime = 0;
-        menuMusic.play();
-        menuMusicIsPlaying = true;
-    } else if (menuMusicIsPlaying === true) {
-        menuMusic.pause();
-        menuMusic.currentTime = 0;
-        battleMusic.play();
-        menuMusicIsPlaying = false;
-    }
 }
