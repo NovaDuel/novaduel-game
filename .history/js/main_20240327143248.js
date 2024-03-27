@@ -5,7 +5,6 @@ const selector = selector => document.querySelector(selector);
 const selectAll = selector => document.querySelectorAll(selector);
 const menuMusic = new Audio("../music/menu-music.wav");
 const battleMusic = new Audio("../music/battle-music.wav");
-battleMusic.volume = 0.3;
 let basicAttackBtn = selector('#basic-attack');
 let specialAttackBtn = selector('#special-attack');
 let healBtn = selector('#heal-action');

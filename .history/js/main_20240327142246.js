@@ -3,9 +3,8 @@ import { Enemy } from "./modules/enemy.js";
 
 const selector = selector => document.querySelector(selector);
 const selectAll = selector => document.querySelectorAll(selector);
-const menuMusic = new Audio("../music/menu-music.wav");
-const battleMusic = new Audio("../music/battle-music.wav");
-battleMusic.volume = 0.3;
+const menuMusic = new Audio("novaduel menu master.wav");
+const battleMusic = new Audio("novaduel master.wav");
 let basicAttackBtn = selector('#basic-attack');
 let specialAttackBtn = selector('#special-attack');
 let healBtn = selector('#heal-action');
@@ -14,19 +13,18 @@ let player = new Player(100, 100, 20);
 let enemy = new Enemy(100, 100, 18);
 
 function createPrincipalLayer() {
+    menuMusic.play();
     selector("#main-container").style.display = 'none';
     let createButton = document.createElement('button');
     createButton.classList.add('start-button');
     createButton.textContent = 'START';
     document.body.appendChild(createButton);
-    menuMusic.play();
 
     selector('.start-button').addEventListener('click', () => {
         selector("#main-container").style.display = 'block';
         selector(".start-button").style.display = 'none';
-        menuMusic.pause();
-        menuMusic.currentTime = 0;
         battleMusic.play();
+        battleMusic.volume(100);
     });
 }
 

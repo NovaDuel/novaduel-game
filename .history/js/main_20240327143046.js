@@ -5,7 +5,6 @@ const selector = selector => document.querySelector(selector);
 const selectAll = selector => document.querySelectorAll(selector);
 const menuMusic = new Audio("../music/menu-music.wav");
 const battleMusic = new Audio("../music/battle-music.wav");
-battleMusic.volume = 0.3;
 let basicAttackBtn = selector('#basic-attack');
 let specialAttackBtn = selector('#special-attack');
 let healBtn = selector('#heal-action');
@@ -20,12 +19,13 @@ function createPrincipalLayer() {
     createButton.textContent = 'START';
     document.body.appendChild(createButton);
     menuMusic.play();
+    menuMusic.volume(100);
 
     selector('.start-button').addEventListener('click', () => {
         selector("#main-container").style.display = 'block';
         selector(".start-button").style.display = 'none';
-        menuMusic.pause();
-        menuMusic.currentTime = 0;
+        menuMusic.stop();
+        battleMusic.volume(100);
         battleMusic.play();
     });
 }
