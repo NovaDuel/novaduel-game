@@ -3,8 +3,8 @@ import { Enemy } from "./modules/enemy.js";
 
 const selector = selector => document.querySelector(selector);
 const selectAll = selector => document.querySelectorAll(selector);
-const menuMusic = new Audio("../music/menu-music.wav");
-const battleMusic = new Audio("../music/battle-music.wav");
+const menuMusic = new Audio("../music/menu-music.mp3");
+const battleMusic = new Audio("../music/battle-music.mp3");
 battleMusic.volume = 0.3;
 let basicAttackBtn = selector('#basic-attack');
 let specialAttackBtn = selector('#special-attack');
