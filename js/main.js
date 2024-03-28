@@ -5,6 +5,18 @@ const selector = selector => document.querySelector(selector);
 const selectAll = selector => document.querySelectorAll(selector);
 const menuMusic = new Audio("../music/menu-music.mp3");
 const battleMusic = new Audio("../music/battle-music.mp3");
+const enemyScreams = [
+    new Audio("../music/enemy-scream1.mp3"),
+    new Audio("../music/enemy-scream2.mp3"),
+    new Audio("../music/enemy-scream3.mp3"),
+    new Audio("../music/enemy-scream4.mp3"),
+    new Audio("../music/enemy-scream5.mp3"),
+    new Audio("../music/enemy-die.mp3")
+];
+const endSounds = [
+    new Audio("../music/you-win.mp3"),
+    new Audio("../music/game-over.mp3")
+]
 battleMusic.volume = 0.3;
 let basicAttackBtn = selector('#basic-attack');
 let specialAttackBtn = selector('#special-attack');
@@ -93,6 +105,7 @@ let buttons = selectAll(".btn");
 let enemyTimeOut;
 
 basicAttackBtn.addEventListener('click', function() {
+    enemyScream();
     let playerStrength = player.attackPlayer();
     enemy.receiveDamage(playerStrength);
     buttons.forEach(button => {
@@ -110,6 +123,7 @@ basicAttackBtn.addEventListener('click', function() {
     playerWins();
 });
 specialAttackBtn.addEventListener('click', function() {
+    enemyScream();
     let playerStrength = player.specialAttackPlayer();
     enemy.receiveDamage(playerStrength);
     buttons.forEach(button => {
@@ -229,7 +243,6 @@ function tryAgain(buttonRetry, screen) {
     });
 }
 
-
 selector("#volume").onclick = () => {
     if (volumeOn === false) {
         menuMusic.volume = 1;
@@ -241,7 +254,6 @@ selector("#volume").onclick = () => {
         volumeOn = false;
     }
 }
-
 
 function playMusic() {
     if (menuMusicIsPlaying === false) {
@@ -255,4 +267,9 @@ function playMusic() {
         battleMusic.play();
         menuMusicIsPlaying = false;
     }
+}
+
+function enemyScream() {
+    let randomScream = enemyScreams[Math.floor(Math.random() * 5)];
+    randomScream.play();
 }
