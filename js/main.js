@@ -212,7 +212,7 @@ function enemyWins() {
 
 function playerWins() { 
     if (enemy.health <= 0) {
-        enemyDies();
+        enemyScream()
         playMusic();
         clearTimeout(enemyTimeOut);
         selector("#main-container").style.display = 'none';
@@ -272,9 +272,5 @@ function playMusic() {
 
 function enemyScream() {
     let randomScream = enemyScreams[Math.floor(Math.random() * 5)];
-    randomScream.play();
-}
-
-function enemyDies() {
-    enemyScreams[5].play();
+    enemy.health > 0 ? randomScream.play() : enemyScreams[5].play();
 }
