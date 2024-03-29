@@ -17,6 +17,8 @@ const endSounds = [
     new Audio("../music/you-win.mp3"),
     new Audio("../music/game-over.mp3")
 ]
+endSounds[0].volume = 0.5;
+endSounds[1].volume = 0.5;
 battleMusic.volume = 0.3;
 let basicAttackBtn = selector('#basic-attack');
 let specialAttackBtn = selector('#special-attack');
@@ -193,6 +195,7 @@ function stateStamina() {
 
 function enemyWins() {
     if (player.health <= 0) {
+        endSound();
         playMusic();
         selector("#main-container").style.display = 'none';
         let gameOver = document.createElement("div");
@@ -212,7 +215,8 @@ function enemyWins() {
 
 function playerWins() { 
     if (enemy.health <= 0) {
-        enemyScream()
+        enemyScream();
+        endSound();
         playMusic();
         clearTimeout(enemyTimeOut);
         selector("#main-container").style.display = 'none';
@@ -273,4 +277,8 @@ function playMusic() {
 function enemyScream() {
     let randomScream = enemyScreams[Math.floor(Math.random() * 5)];
     enemy.health > 0 ? randomScream.play() : enemyScreams[5].play();
+}
+
+function endSound() {
+    enemy.health <= 0 ? endSounds[0].play() : endSounds[1].play();
 }
