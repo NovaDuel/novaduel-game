@@ -253,7 +253,7 @@ function tryAgain(buttonRetry, screen) {
     });
 }
 
-selector("#music").onclick = () => {
+selector("#music").addEventListener('click', () => {
     if (volumeMusicOn === false) {
         menuMusic.volume = 1;
         battleMusic.volume = 0.3;
@@ -263,9 +263,9 @@ selector("#music").onclick = () => {
         battleMusic.volume = 0;
         volumeMusicOn = false;
     }
-}
+})
 
-selector("#effects").onclick = () => {
+selector("#effects").addEventListener('click', () => {
     if (volumeFxOn === false) {
         enemyScreams.forEach(scream => {
             scream.volume = 1;
@@ -283,7 +283,7 @@ selector("#effects").onclick = () => {
         })
         volumeFxOn = false;
     }
-}
+})
 
 function playMusic() {
     if (menuMusicIsPlaying === false) {
