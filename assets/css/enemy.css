@@ -1,0 +1,28 @@
+.end-screen {
+    width: 1024px;
+    height: 768px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(180deg, var(--colour-five) 42%, var(--colour-four) 100%);
+    h1 {
+        color: var(--colour-four);
+        font-size: calc(5em + 1vw);
+        text-shadow: 0px 4px 4px rgba(255, 255, 255, 0.5);
+    }
+}
+
+.img-enemy-wins {
+    height: 70%;
+}
+
+#retry-btn {
+    width: 20%;
+    border: none;
+    padding: .3em;
+    font-size: calc(1em + 1vw);
+    color: var(--colour-five);
+    background-color: var(--colour-four);
+    box-shadow: 4px 8px var(--colour-five)
+}

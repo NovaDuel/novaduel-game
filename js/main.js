@@ -12,14 +12,30 @@ let enemy = new Enemy(100, 100, 18);
 
 function createPrincipalLayer() {
     selector("#main-container").style.display = 'none';
-    let createButton = document.createElement('button');
+    let layer = document.createElement('div'),
+        createButton = document.createElement('button'),
+        buttonMenu = document.createElement('button'),
+        title = document.createElement('h1'),
+        layerGradient = document.createElement('div');
+    layer.classList.add('main-game');
+    layer.setAttribute('id', 'main');
+    title.classList.add('main-game__h1');
     createButton.classList.add('start-button');
+    layerGradient.classList.add('layer-gradient');
+    buttonMenu.classList.add('menu');
+
+    title.innerHTML = `<span>N</span>OVA<span>D</span>UEL`;
     createButton.textContent = 'START';
-    document.body.appendChild(createButton);
+    buttonMenu.textContent = 'MENU';
+    layer.appendChild(buttonMenu);
+    layer.appendChild(layerGradient);
+    layer.appendChild(title);
+    layer.appendChild(createButton);
+    document.body.appendChild(layer);
 
     selector('.start-button').addEventListener('click', () => {
         selector("#main-container").style.display = 'block';
-        selector(".start-button").style.display = 'none';
+        selector("#main").style.display = 'none';
     });
 }
 
@@ -170,15 +186,20 @@ function stateStamina() {
 function enemyWins() {
     if (player.health <= 0) {
         selector("#main-container").style.display = 'none';
-        let gameOver = document.createElement("div");
+        let gameOver = document.createElement("div"),
+            gameOverText = document.createElement("h1"),
+            charEnemyWins = document.createElement('img'),
+            retryBtn = document.createElement("button");
         gameOver.setAttribute("id", "game-over");
-        gameOver.classList.add("end-screen");
-        let gameOverText = document.createElement("h1");
-        gameOverText.textContent = "GAME OVER";
-        let retryBtn = document.createElement("button");
         retryBtn.setAttribute("id", "retry-btn");
+        charEnemyWins.setAttribute("src", "../assets/images/enemy.png");
+        charEnemyWins.setAttribute("alt", "enemy-char");
+        gameOver.classList.add("end-screen");
+        charEnemyWins.classList.add('img-enemy-wins');
+        gameOverText.textContent = "GAME OVER";
         retryBtn.textContent = "TRY AGAIN";
         gameOver.appendChild(gameOverText);
+        gameOver.appendChild(charEnemyWins);
         gameOver.appendChild(retryBtn);
         document.body.appendChild(gameOver);
         tryAgain(selector("#retry-btn"), selector('.end-screen'));
