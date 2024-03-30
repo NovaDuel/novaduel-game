@@ -24,7 +24,8 @@ let basicAttackBtn = selector('#basic-attack');
 let specialAttackBtn = selector('#special-attack');
 let healBtn = selector('#heal-action');
 let menuMusicIsPlaying = false;
-let volumeOn = false;
+let volumeMusicOn = false;
+let volumeFxOn = false;
 
 let player = new Player(100, 100, 20);
 let enemy = new Enemy(100, 100, 18);
@@ -32,13 +33,17 @@ let enemy = new Enemy(100, 100, 18);
 function createPrincipalLayer() {
     selector("#main-container").style.display = 'none';
     let startButton = document.createElement('button');
-    let volumeButton = document.createElement('button');
+    let musicButton = document.createElement('button');
+    let effectsButton = document.createElement('button');
     startButton.classList.add('start-button');
     startButton.textContent = 'START';
-    volumeButton.setAttribute('id', 'volume');
-    volumeButton.textContent = 'VOLUME';
+    musicButton.setAttribute('id', 'music');
+    musicButton.textContent = 'MUSIC';
+    effectsButton.setAttribute('id', 'effects');
+    effectsButton.textContent = 'FX';
     document.body.appendChild(startButton);
-    document.body.appendChild(volumeButton);
+    document.body.appendChild(musicButton);
+    document.body.appendChild(effectsButton);
     playMusic();
     selector('.start-button').addEventListener('click', () => {
         selector("#main-container").style.display = 'block';
@@ -248,15 +253,35 @@ function tryAgain(buttonRetry, screen) {
     });
 }
 
-selector("#volume").onclick = () => {
-    if (volumeOn === false) {
+selector("#music").onclick = () => {
+    if (volumeMusicOn === false) {
         menuMusic.volume = 1;
         battleMusic.volume = 0.3;
-        volumeOn = true;
-    } else if (volumeOn === true) {
+        volumeMusicOn = true;
+    } else if (volumeMusicOn === true) {
         menuMusic.volume = 0;
         battleMusic.volume = 0;
-        volumeOn = false;
+        volumeMusicOn = false;
+    }
+}
+
+selector("#effects").onclick = () => {
+    if (volumeFxOn === false) {
+        enemyScreams.forEach(scream => {
+            scream.volume = 1;
+        })
+        endSounds.forEach(sound => {
+            sound.volume = 1;
+        })
+        volumeFxOn = true;
+    } else if (volumeFxOn === true) {
+        enemyScreams.forEach(scream => {
+            scream.volume = 0;
+        })
+        endSounds.forEach(sound => {
+            sound.volume = 0;
+        })
+        volumeFxOn = false;
     }
 }
 
