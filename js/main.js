@@ -24,29 +24,52 @@ let basicAttackBtn = selector('#basic-attack');
 let specialAttackBtn = selector('#special-attack');
 let healBtn = selector('#heal-action');
 let menuMusicIsPlaying = false;
-let volumeOn = false;
+let volumeMusicOn = false;
+let volumeFxOn = false;
 
 let player = new Player(100, 100, 20);
 let enemy = new Enemy(100, 100, 18);
 
-function createPrincipalLayer() {
+intro();
+updateBars();
+stateHealth();
+
+function intro() {
     selector("#main-container").style.display = 'none';
+    let introAlert = document.createElement('div');
+    let acceptButton = document.createElement('button');
+    acceptButton.setAttribute('id', 'accept');
+    acceptButton.textContent = 'ACCEPT';
+    introAlert.appendChild(acceptButton);
+    document.body.appendChild(introAlert);
+    acceptButton.addEventListener('click', () => {
+        introAlert.remove();
+        createPrincipalLayer()
+        playMusic();
+    });
+}
+
+function createPrincipalLayer() {
     let startButton = document.createElement('button');
-    let volumeButton = document.createElement('button');
+    let musicButton = document.createElement('button');
+    let effectsButton = document.createElement('button');
     startButton.classList.add('start-button');
     startButton.textContent = 'START';
-    volumeButton.setAttribute('id', 'volume');
-    volumeButton.textContent = 'VOLUME';
+    musicButton.setAttribute('id', 'music');
+    musicButton.textContent = 'MUSIC';
+    effectsButton.setAttribute('id', 'effects');
+    effectsButton.textContent = 'FX';
     document.body.appendChild(startButton);
-    document.body.appendChild(volumeButton);
-    playMusic();
-    selector('.start-button').addEventListener('click', () => {
+    document.body.appendChild(musicButton);
+    document.body.appendChild(effectsButton);
+    musicButton.addEventListener('click', toggleMusic)
+    effectsButton.addEventListener('click', toggleFx)
+    startButton.addEventListener('click', () => {
         selector("#main-container").style.display = 'block';
         selector(".start-button").style.display = 'none';
         playMusic();
     });
 }
-
 
 function updateBars() {
     selector("#health-player").style.width = `${player.health}%`;
@@ -58,9 +81,6 @@ function updateBars() {
     selector('#health-enemy').textContent = enemy.health;
     selector('#stamina-enemy').textContent = enemy.stamina;
 }
-createPrincipalLayer();
-updateBars();
-stateHealth();
 
 function actionsEnemy() {
     if (enemy.stamina >= 10) {
@@ -248,15 +268,35 @@ function tryAgain(buttonRetry, screen) {
     });
 }
 
-selector("#volume").onclick = () => {
-    if (volumeOn === false) {
+function toggleMusic() {
+    if (volumeMusicOn === false) {
         menuMusic.volume = 1;
         battleMusic.volume = 0.3;
-        volumeOn = true;
-    } else if (volumeOn === true) {
+        volumeMusicOn = true;
+    } else if (volumeMusicOn === true) {
         menuMusic.volume = 0;
         battleMusic.volume = 0;
-        volumeOn = false;
+        volumeMusicOn = false;
+    }
+}
+
+function toggleFx() {
+    if (volumeFxOn === false) {
+        enemyScreams.forEach(scream => {
+            scream.volume = 1;
+        })
+        endSounds.forEach(sound => {
+            sound.volume = 1;
+        })
+        volumeFxOn = true;
+    } else if (volumeFxOn === true) {
+        enemyScreams.forEach(scream => {
+            scream.volume = 0;
+        })
+        endSounds.forEach(sound => {
+            sound.volume = 0;
+        })
+        volumeFxOn = false;
     }
 }
 
