@@ -21,7 +21,10 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    background-image: url("../images/background.avif");
+    -webkit-user-select: none;
+    user-select: none;
+    background-image: url(../images/background.png);
+    background-size: cover;
 }
 
 #main-container {
