@@ -58,20 +58,36 @@ function createPrincipalLayer() {
     let startButton = document.createElement('button');
     let musicButton = document.createElement('button');
     let effectsButton = document.createElement('button');
+    let layer = document.createElement('div'),
+        buttonMenu = document.createElement('button'),
+        title = document.createElement('h1'),
+        layerGradient = document.createElement('div');
+    title.innerHTML = `<span>N</span>OVA<span>D</span>UEL`;
+    
+    buttonMenu.textContent = 'MENU';
+    layer.classList.add('main-game');
+    layer.setAttribute('id', 'main');
+    title.classList.add('main-game__h1');
+    layerGradient.classList.add('layer-gradient');
+    buttonMenu.classList.add('menu');
     startButton.classList.add('start-button');
     startButton.textContent = 'START';
     musicButton.setAttribute('id', 'music');
     musicButton.textContent = 'MUSIC';
     effectsButton.setAttribute('id', 'effects');
     effectsButton.textContent = 'FX';
-    document.body.appendChild(startButton);
+    layer.appendChild(buttonMenu);
+    layer.appendChild(layerGradient);
+    layer.appendChild(title);
+    layer.appendChild(startButton);
+    document.body.appendChild(layer);
     document.body.appendChild(musicButton);
     document.body.appendChild(effectsButton);
     musicButton.addEventListener('click', toggleMusic)
     effectsButton.addEventListener('click', toggleFx)
     startButton.addEventListener('click', () => {
         selector("#main-container").style.display = 'block';
-        selector(".start-button").style.display = 'none';
+        layer.style.display = 'none';
         playMusic();
     });
 }
@@ -226,15 +242,20 @@ function enemyWins() {
         endSound();
         playMusic();
         selector("#main-container").style.display = 'none';
-        let gameOver = document.createElement("div");
+        let gameOver = document.createElement("div"),
+            gameOverText = document.createElement("h1"),
+            charEnemyWins = document.createElement('img'),
+            retryBtn = document.createElement("button");
         gameOver.setAttribute("id", "game-over");
-        gameOver.classList.add("end-screen");
-        let gameOverText = document.createElement("h1");
-        gameOverText.textContent = "GAME OVER";
-        let retryBtn = document.createElement("button");
         retryBtn.setAttribute("id", "retry-btn");
+        charEnemyWins.setAttribute("src", "../assets/images/enemy.png");
+        charEnemyWins.setAttribute("alt", "enemy-char");
+        gameOver.classList.add("end-screen");
+        charEnemyWins.classList.add('img-enemy-wins');
+        gameOverText.textContent = "GAME OVER";
         retryBtn.textContent = "TRY AGAIN";
         gameOver.appendChild(gameOverText);
+        gameOver.appendChild(charEnemyWins);
         gameOver.appendChild(retryBtn);
         document.body.appendChild(gameOver);
         tryAgain(selector("#retry-btn"), selector('.end-screen'));
