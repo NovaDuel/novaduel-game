@@ -24,7 +24,7 @@ const actionSounds = [
 ]
 endSounds[0].volume = 0.5;
 endSounds[1].volume = 0.5;
-battleMusic.volume = 0.3;
+battleMusic.volume = 0.2;
 let basicAttackBtn = selector('#basic-attack');
 let specialAttackBtn = selector('#special-attack');
 let healBtn = selector('#heal-action');
@@ -132,38 +132,40 @@ let buttons = selectAll(".btn");
 let enemyTimeOut;
 
 basicAttackBtn.addEventListener('click', function() {
-    enemyScream();
+    actionSounds[0].play();
+    setTimeout(enemyScream(), 400);
     let playerStrength = player.attackPlayer();
     enemy.receiveDamage(playerStrength);
     buttons.forEach(button => {
         button.setAttribute("disabled", "")
     });
-    enemyTimeOut = setTimeout(actionsEnemy, 800);
+    enemyTimeOut = setTimeout(actionsEnemy, 1000);
     setTimeout(function() {
         buttons.forEach(button => {
             button.removeAttribute("disabled", "");
             stateHealth();
             stateStamina()
         });
-    }, 1000);
+    }, 1500);
     updateBars();
     playerWins();
 });
 specialAttackBtn.addEventListener('click', function() {
-    enemyScream();
+    actionSounds[1].play();
+    setTimeout(enemyScream(), 1000);
     let playerStrength = player.specialAttackPlayer();
     enemy.receiveDamage(playerStrength);
     buttons.forEach(button => {
         button.setAttribute("disabled", "")
     })
-    enemyTimeOut = setTimeout(actionsEnemy, 800);
+    enemyTimeOut = setTimeout(actionsEnemy, 1500);
     setTimeout(function() {
         buttons.forEach(button => {
             button.removeAttribute("disabled", "")
             stateHealth();
             stateStamina()
         })
-    }, 1000)
+    }, 2100)
     updateBars();
     playerWins();
 });
@@ -171,18 +173,19 @@ healBtn.addEventListener('click', function() {
     if (player.health > 70 || player.stamina === 0) {
         alert("No puedes curarte ahora mismo");
     } else {
+        actionSounds[2].play();
         player.healing();
         buttons.forEach(button => {
             button.setAttribute("disabled", "");
         })
-        enemyTimeOut = setTimeout(actionsEnemy, 800);
+        enemyTimeOut = setTimeout(actionsEnemy, 1000);
         setTimeout(function() {
             buttons.forEach(button => {
                 button.removeAttribute("disabled", "")
                 stateHealth();
                 stateStamina()
             });
-        }, 1000)
+        }, 2000)
         updateBars();
     }
 });
@@ -276,7 +279,7 @@ function tryAgain(buttonRetry, screen) {
 function toggleMusic() {
     if (volumeMusicOn === false) {
         menuMusic.volume = 1;
-        battleMusic.volume = 0.3;
+        battleMusic.volume = 0.2;
         volumeMusicOn = true;
     } else if (volumeMusicOn === true) {
         menuMusic.volume = 0;
@@ -291,7 +294,7 @@ function toggleFx() {
             scream.volume = 1;
         })
         endSounds.forEach(sound => {
-            sound.volume = 1;
+            sound.volume = 0.5;
         })
         actionSounds.forEach(sound => {
             sound.volume = 1;
