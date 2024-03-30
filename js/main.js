@@ -59,18 +59,15 @@ function createPrincipalLayer() {
     let musicButton = document.createElement('button');
     let effectsButton = document.createElement('button');
     let layer = document.createElement('div'),
-        createButton = document.createElement('button'),
         buttonMenu = document.createElement('button'),
         title = document.createElement('h1'),
         layerGradient = document.createElement('div');
-        
     title.innerHTML = `<span>N</span>OVA<span>D</span>UEL`;
-    createButton.textContent = 'START';
+    
     buttonMenu.textContent = 'MENU';
     layer.classList.add('main-game');
     layer.setAttribute('id', 'main');
     title.classList.add('main-game__h1');
-    createButton.classList.add('start-button');
     layerGradient.classList.add('layer-gradient');
     buttonMenu.classList.add('menu');
     startButton.classList.add('start-button');
@@ -82,16 +79,15 @@ function createPrincipalLayer() {
     layer.appendChild(buttonMenu);
     layer.appendChild(layerGradient);
     layer.appendChild(title);
-    layer.appendChild(createButton);
+    layer.appendChild(startButton);
     document.body.appendChild(layer);
-    document.body.appendChild(startButton);
     document.body.appendChild(musicButton);
     document.body.appendChild(effectsButton);
     musicButton.addEventListener('click', toggleMusic)
     effectsButton.addEventListener('click', toggleFx)
     startButton.addEventListener('click', () => {
         selector("#main-container").style.display = 'block';
-        selector(".start-button").style.display = 'none';
+        layer.style.display = 'none';
         playMusic();
     });
 }
