@@ -17,6 +17,11 @@ const endSounds = [
     new Audio("../music/you-win.mp3"),
     new Audio("../music/game-over.mp3")
 ]
+const actionSounds = [
+    new Audio("../music/basicattack.mp3"),
+    new Audio("../music/specialattack.mp3"),
+    new Audio("../music/heal.mp3")
+]
 endSounds[0].volume = 0.5;
 endSounds[1].volume = 0.5;
 battleMusic.volume = 0.3;
@@ -288,12 +293,18 @@ function toggleFx() {
         endSounds.forEach(sound => {
             sound.volume = 1;
         })
+        actionSounds.forEach(sound => {
+            sound.volume = 1;
+        })
         volumeFxOn = true;
     } else if (volumeFxOn === true) {
         enemyScreams.forEach(scream => {
             scream.volume = 0;
         })
         endSounds.forEach(sound => {
+            sound.volume = 0;
+        })
+        actionSounds.forEach(sound => {
             sound.volume = 0;
         })
         volumeFxOn = false;
