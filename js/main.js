@@ -30,8 +30,26 @@ let volumeFxOn = false;
 let player = new Player(100, 100, 20);
 let enemy = new Enemy(100, 100, 18);
 
-function createPrincipalLayer() {
+intro();
+updateBars();
+stateHealth();
+
+function intro() {
     selector("#main-container").style.display = 'none';
+    let introAlert = document.createElement('div');
+    let acceptButton = document.createElement('button');
+    acceptButton.setAttribute('id', 'accept');
+    acceptButton.textContent = 'ACCEPT';
+    introAlert.appendChild(acceptButton);
+    document.body.appendChild(introAlert);
+    acceptButton.addEventListener('click', () => {
+        introAlert.remove();
+        createPrincipalLayer()
+        playMusic();
+    });
+}
+
+function createPrincipalLayer() {
     let startButton = document.createElement('button');
     let musicButton = document.createElement('button');
     let effectsButton = document.createElement('button');
@@ -44,14 +62,14 @@ function createPrincipalLayer() {
     document.body.appendChild(startButton);
     document.body.appendChild(musicButton);
     document.body.appendChild(effectsButton);
-    playMusic();
-    selector('.start-button').addEventListener('click', () => {
+    musicButton.addEventListener('click', toggleMusic)
+    effectsButton.addEventListener('click', toggleFx)
+    startButton.addEventListener('click', () => {
         selector("#main-container").style.display = 'block';
         selector(".start-button").style.display = 'none';
         playMusic();
     });
 }
-
 
 function updateBars() {
     selector("#health-player").style.width = `${player.health}%`;
@@ -63,9 +81,6 @@ function updateBars() {
     selector('#health-enemy').textContent = enemy.health;
     selector('#stamina-enemy').textContent = enemy.stamina;
 }
-createPrincipalLayer();
-updateBars();
-stateHealth();
 
 function actionsEnemy() {
     if (enemy.stamina >= 10) {
@@ -253,7 +268,7 @@ function tryAgain(buttonRetry, screen) {
     });
 }
 
-selector("#music").addEventListener('click', () => {
+function toggleMusic() {
     if (volumeMusicOn === false) {
         menuMusic.volume = 1;
         battleMusic.volume = 0.3;
@@ -263,9 +278,9 @@ selector("#music").addEventListener('click', () => {
         battleMusic.volume = 0;
         volumeMusicOn = false;
     }
-})
+}
 
-selector("#effects").addEventListener('click', () => {
+function toggleFx() {
     if (volumeFxOn === false) {
         enemyScreams.forEach(scream => {
             scream.volume = 1;
@@ -283,7 +298,7 @@ selector("#effects").addEventListener('click', () => {
         })
         volumeFxOn = false;
     }
-})
+}
 
 function playMusic() {
     if (menuMusicIsPlaying === false) {
