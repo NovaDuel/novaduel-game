@@ -41,12 +41,16 @@ stateHealth();
 
 function intro() {
     selector("#main-container").style.display = 'none';
-    let introAlert = document.createElement('div');
-    let acceptButton = document.createElement('button');
+    let introAlert = document.createElement('div'),
+        introText = document.createElement('p'),
+        acceptButton = document.createElement('button');
     acceptButton.setAttribute('id', 'accept');
+    introAlert.classList.add('modal-intro');
+    introText.classList.add('modal-text');
     acceptButton.textContent = 'ACCEPT';
-    introAlert.appendChild(acceptButton);
-    document.body.appendChild(introAlert);
+    introText.textContent = `Welcome to NovaDuel! Use the attack buttons (normal and special attack) to defeat your opponent, you can also heal yourself with the heal button.`;
+    introAlert.appendChild(introText);
+    introText.appendChild(acceptButton);    document.body.appendChild(introAlert);
     acceptButton.addEventListener('click', () => {
         introAlert.remove();
         createPrincipalLayer()

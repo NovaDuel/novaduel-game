@@ -6,6 +6,7 @@
     justify-content: center;
     align-items: center;
     background: linear-gradient(180deg, var(--colour-five) 42%, var(--colour-four) 100%);
+    row-gap: 1em;
     h1 {
         color: var(--colour-four);
         font-size: calc(5em + 1vw);
@@ -14,7 +15,7 @@
 }
 
 .img-enemy-wins {
-    height: 70%;
+    height: 60%;
 }
 
 #retry-btn {

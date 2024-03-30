@@ -6,6 +6,7 @@
     --colour-three: #05487E;
     --colour-four: #AA003F;
     --colour-five: #01012B;
+    --colour-six: #4106AE;
 }
 
 * {
@@ -25,6 +26,7 @@ body {
     user-select: none;
     background-image: url(../images/background.png);
     background-size: cover;
+    position: relative;
 }
 
 #main-container {
