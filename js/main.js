@@ -18,8 +18,8 @@ const endSounds = [
     new Audio("../music/game-over.mp3")
 ]
 const actionSounds = [
-    new Audio("../music/basicattack.mp3"),
-    new Audio("../music/specialattack.mp3"),
+    new Audio("../music/basic-attack.mp3"),
+    new Audio("../music/special-attack.mp3"),
     new Audio("../music/heal.mp3")
 ]
 endSounds[0].volume = 0.5;
