@@ -7,8 +7,6 @@ const menuMusic = new Audio("../music/menu-music.mp3");
 const battleMusic = new Audio("../music/battle-music.mp3");
 const clickSound = new Audio("../music/click.mp3")
 const startSound = new Audio("../music/start.mp3")
-let optionButtons = selectAll(".options");
-let startButton = selector("#start-button");
 const enemyScreams = [
     new Audio("../music/enemy-scream1.mp3"),
     new Audio("../music/enemy-scream2.mp3"),
@@ -34,6 +32,7 @@ actionSounds[0].volume = 0.5;
 actionSounds[1].volume = 0.5;
 actionSounds[2].volume = 0.5;
 battleMusic.volume = 0.2;
+startSound.volume = 0.3;
 let basicAttackBtn = selector('#basic-attack');
 let specialAttackBtn = selector('#special-attack');
 let healBtn = selector('#heal-action');
@@ -70,9 +69,9 @@ function createPrincipalLayer() {
     let musicButton = document.createElement('button');
     let effectsButton = document.createElement('button');
     let layer = document.createElement('div'),
-        buttonMenu = document.createElement('button'),
-        title = document.createElement('h1'),
-        layerGradient = document.createElement('div');
+    buttonMenu = document.createElement('button'),
+    title = document.createElement('h1'),
+    layerGradient = document.createElement('div');
     title.innerHTML = `<span>N</span>OVA<span>D</span>UEL`;
     
     buttonMenu.textContent = 'MENU';
@@ -102,9 +101,13 @@ function createPrincipalLayer() {
     startButton.addEventListener('click', () => {
         selector("#main-container").style.display = 'block';
         layer.style.display = 'none';
+        startSound.play();
         playMusic();
     });
 }
+
+let optionButtons = selectAll(".options");
+let startButton = selector("#start-button");
 
 function updateBars() {
     selector("#health-player").style.width = `${player.health}%`;
