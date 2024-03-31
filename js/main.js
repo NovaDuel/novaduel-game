@@ -35,12 +35,13 @@ let menuMusicIsPlaying = false;
 let volumeMusicOn = false;
 let volumeFxOn = false;
 
-let player = new Player(100, 100, 20);
-let enemy = new Enemy(100, 100, 18);
+let player = new Player(100, 100, 18);
+let enemy = new Enemy(100, 100, 16);
 
 intro();
 updateBars();
 stateHealth();
+stateStamina();
 
 function intro() {
     selector("#main-container").style.display = 'none';
@@ -107,41 +108,70 @@ function updateBars() {
 }
 
 function actionsEnemy() {
-    if (enemy.stamina >= 10) {
-        if (enemy.health > 70) {
+    if (enemy.health <= 25 && enemy.stamina >= 30) {
+        actionSounds[2].play();
+        enemy.healing();
+    } else if (enemy.stamina >= 30) {
+        if (enemy.health > 60) {
             let randomAction = Math.floor(Math.random() * 2);
             switch(randomAction) {
                 case 0:
+                    actionSounds[0].play();
                     let enemyStrength = enemy.attackEnemy();
                     player.receiveDamage(enemyStrength);
                     break;
                 case 1:
+                    actionSounds[1].play();
                     let specialEnemyStrength = enemy.specialAttackEnemy();
                     player.receiveDamage(specialEnemyStrength);
                     break;
             }
-        } else if (enemy.health <= 70){
+        } else if (enemy.health <= 60){
             let randomAction = Math.floor(Math.random() * 3);
             switch(randomAction) {
                 case 0:
+                    actionSounds[0].play();
                     let enemyStrength = enemy.attackEnemy();
                     player.receiveDamage(enemyStrength);
                     break;
                 case 1:
+                    actionSounds[1].play();
                     let specialEnemyStrength = enemy.specialAttackEnemy();
                     player.receiveDamage(specialEnemyStrength);
                     break;
                 case 2:
+                    actionSounds[2].play();
                     enemy.healing();
                     break;
                 }
             }
             
-        } else {
+    } else if (enemy.stamina < 30 && enemy.stamina >= 20) {
+        if (enemy.health > 60) {
+            actionSounds[0].play();
             let enemyStrength = enemy.attackEnemy();
             player.receiveDamage(enemyStrength);
-            // selector('#health-player').textContent = player.health;
+        } else if (enemy.health <= 60){
+            let randomAction = Math.floor(Math.random() * 3);
+            switch(randomAction) {
+                case 0:
+                    actionSounds[0].play();
+                    let enemyStrength = enemy.attackEnemy();
+                    player.receiveDamage(enemyStrength);
+                    break;
+                case 1:
+                    actionSounds[2].play();
+                    enemy.healing();
+                    break;
+            }
         }
+    } else {
+        actionSounds[0].play();
+        let enemyStrength = enemy.attackEnemy();
+        player.receiveDamage(enemyStrength);
+                // selector('#health-player').textContent = player.health;
+    }
+    
     updateBars();
     stateHealth();
     enemyWins();
@@ -165,7 +195,7 @@ basicAttackBtn.addEventListener('click', function() {
             stateHealth();
             stateStamina()
         });
-    }, 1500);
+    }, 2300);
     updateBars();
     playerWins();
 });
@@ -184,7 +214,7 @@ specialAttackBtn.addEventListener('click', function() {
             stateHealth();
             stateStamina()
         })
-    }, 2100)
+    }, 2300)
     updateBars();
     playerWins();
 });
@@ -197,28 +227,28 @@ healBtn.addEventListener('click', function() {
         buttons.forEach(button => {
             button.setAttribute("disabled", "");
         })
-        enemyTimeOut = setTimeout(actionsEnemy, 1000);
+        enemyTimeOut = setTimeout(actionsEnemy, 1700);
         setTimeout(function() {
             buttons.forEach(button => {
                 button.removeAttribute("disabled", "")
                 stateHealth();
                 stateStamina()
             });
-        }, 2000)
+        }, 2300)
         updateBars();
     }
 });
 
 
 function stateHealth() {
-    if (player.health > 70){
+    if (player.health > 65){
         healBtn.setAttribute("disabled", "");
         healBtn.addEventListener('mouseover', (e) => {
             e.target.setAttribute("title", "You are already healed");
         });
     }
     
-    if (player.health <= 70) {
+    if (player.health <= 65) {
         healBtn.addEventListener('mouseover', (e) => {
             e.target.setAttribute("title", "You can heal");
         });
@@ -232,7 +262,7 @@ function stateStamina() {
             e.target.setAttribute("title", "You don't have enough stamina");
         });
     } 
-    if (player.stamina < 10) {
+    if (player.stamina < 40) {
         specialAttackBtn.setAttribute("disabled", "");
         specialAttackBtn.addEventListener('mouseover', (e) => {
             e.target.setAttribute("title", "You don't have enough stamina");
