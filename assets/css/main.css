@@ -59,12 +59,13 @@
     top: 1em;
     width: 12%;
     text-align: center;
-    background-color: var(--colour-one);
-    color: var(--colour-three);
-    font-size: calc(.4em + 1vw);
+    background-color: transparent;
+    color: var(--colour-nine);
+    font-size: calc(.3em + 1vw);
     padding: .1em;
     border: none;
-    box-shadow: 0em .3em 0em var(--colour-three);
+    border: 1px solid var(--colour-nine);
+    box-shadow: 1px 1px 3px var(--colour-nine);
     z-index: 1;
     cursor: pointer;
  }
@@ -92,7 +93,21 @@
 }
 
 #music, #effects {
+    width: 10%;
     position: absolute;
-    bottom: 0;
-    right: 20%;
+    top: 2em;
+    left: 8%;
+    border: none;
+    background-color: transparent
+}
+
+#music {
+    left: 0%;
+}
+
+.music-button,
+.speaker-button {
+    width: calc(2em + 1vw);
+    z-index: 1;
+    cursor: pointer;
 }
