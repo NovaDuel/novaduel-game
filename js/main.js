@@ -28,6 +28,7 @@ const actionSounds = [
 endSounds[0].volume = 0.5;
 endSounds[1].volume = 0.5;
 loseSound.volume = 0.2;
+clickSound.volume = 0.5;
 actionSounds[0].volume = 0.5;
 actionSounds[1].volume = 0.5;
 actionSounds[2].volume = 0.5;
@@ -37,8 +38,8 @@ let basicAttackBtn = selector('#basic-attack');
 let specialAttackBtn = selector('#special-attack');
 let healBtn = selector('#heal-action');
 let menuMusicIsPlaying = false;
-let volumeMusicOn = false;
-let volumeFxOn = false;
+let volumeMusicOn = true;
+let volumeFxOn = true;
 
 let player = new Player(100, 100, 18);
 let enemy = new Enemy(100, 100, 16);
@@ -80,14 +81,11 @@ function createPrincipalLayer() {
     title.classList.add('main-game__h1');
     layerGradient.classList.add('layer-gradient');
     buttonMenu.classList.add('menu');
-    buttonMenu.classList.add('options');
     startButton.classList.add('start-button');
     startButton.textContent = 'START';
     musicButton.setAttribute('id', 'music');
-    musicButton.classList.add('options');
     musicButton.textContent = 'MUSIC';
     effectsButton.setAttribute('id', 'effects');
-    effectsButton.classList.add('options');
     effectsButton.textContent = 'FX';
     layer.appendChild(buttonMenu);
     layer.appendChild(layerGradient);
@@ -96,18 +94,24 @@ function createPrincipalLayer() {
     document.body.appendChild(layer);
     document.body.appendChild(musicButton);
     document.body.appendChild(effectsButton);
-    musicButton.addEventListener('click', toggleMusic)
-    effectsButton.addEventListener('click', toggleFx)
     startButton.addEventListener('click', () => {
         selector("#main-container").style.display = 'block';
         layer.style.display = 'none';
         startSound.play();
         playMusic();
     });
+    buttonMenu.addEventListener('click', () => {
+        clickSound.play();
+    })
+    musicButton.addEventListener('click', () => {
+        clickSound.play();
+        toggleMusic();
+    })
+    effectsButton.addEventListener('click', () => {
+        clickSound.play();
+        toggleFx();
+    })
 }
-
-let optionButtons = selectAll(".options");
-let startButton = selector("#start-button");
 
 function updateBars() {
     selector("#health-player").style.width = `${player.health}%`;
@@ -313,6 +317,7 @@ function playerWins() {
 
 function tryAgain(buttonRetry, screen) {
     buttonRetry.addEventListener('click', () => {
+        startSound.play();
         playMusic();
         screen.remove();
         player.health = 100;
@@ -384,11 +389,3 @@ function enemyScream() {
 function endSound() {
     enemy.health <= 0 ? endSounds[0].play() : endSounds[1].play();
 }
-
-
-optionButtons.addEventListener('click', () => {
-    clickSound.play();
-}) 
-startButton.addEventListener('click', () => {
-    startSound.play();
-})
