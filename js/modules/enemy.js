@@ -11,7 +11,7 @@ export function Enemy (health, stamina, strength) {
         }
     },
     this.specialAttackEnemy = function() {
-        if (this.stamina >= 30) {
+        if (this.stamina >= 40) {
             this.stamina -= 40;
             return this.strength + 12 * Math.round(Math.random() * 3);
         }

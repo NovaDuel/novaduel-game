@@ -108,7 +108,7 @@ function updateBars() {
 }
 
 function actionsEnemy() {
-    if (enemy.health <= 25 && enemy.stamina >= 30) {
+    if (enemy.health <= 25 && enemy.stamina >= 20) {
         actionSounds[2].play();
         enemy.healing();
     } else if (enemy.stamina >= 30) {
@@ -145,26 +145,6 @@ function actionsEnemy() {
                     break;
                 }
             }
-            
-    } else if (enemy.stamina < 30 && enemy.stamina >= 20) {
-        if (enemy.health > 60) {
-            actionSounds[0].play();
-            let enemyStrength = enemy.attackEnemy();
-            player.receiveDamage(enemyStrength);
-        } else if (enemy.health <= 60){
-            let randomAction = Math.floor(Math.random() * 3);
-            switch(randomAction) {
-                case 0:
-                    actionSounds[0].play();
-                    let enemyStrength = enemy.attackEnemy();
-                    player.receiveDamage(enemyStrength);
-                    break;
-                case 1:
-                    actionSounds[2].play();
-                    enemy.healing();
-                    break;
-            }
-        }
     } else {
         actionSounds[0].play();
         let enemyStrength = enemy.attackEnemy();
