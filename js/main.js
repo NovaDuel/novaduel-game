@@ -5,6 +5,10 @@ const selector = selector => document.querySelector(selector);
 const selectAll = selector => document.querySelectorAll(selector);
 const menuMusic = new Audio("../music/menu-music.mp3");
 const battleMusic = new Audio("../music/battle-music.mp3");
+const clickSound = new Audio("../music/click.mp3")
+const startSound = new Audio("../music/start.mp3")
+let optionButtons = selectAll(".options");
+let startButton = selector("#start-button");
 const enemyScreams = [
     new Audio("../music/enemy-scream1.mp3"),
     new Audio("../music/enemy-scream2.mp3"),
@@ -15,8 +19,9 @@ const enemyScreams = [
 ];
 const endSounds = [
     new Audio("../music/you-win.mp3"),
-    new Audio("../music/game-over.mp3")
+    new Audio("../music/game-over.mp3"),
 ]
+const loseSound = new Audio("../music/lost.mp3");
 const actionSounds = [
     new Audio("../music/basic-attack.mp3"),
     new Audio("../music/special-attack.mp3"),
@@ -24,6 +29,7 @@ const actionSounds = [
 ]
 endSounds[0].volume = 0.5;
 endSounds[1].volume = 0.5;
+loseSound.volume = 0.2;
 actionSounds[0].volume = 0.5;
 actionSounds[1].volume = 0.5;
 actionSounds[2].volume = 0.5;
@@ -48,6 +54,7 @@ function intro() {
     let introAlert = document.createElement('div');
     let acceptButton = document.createElement('button');
     acceptButton.setAttribute('id', 'accept');
+    acceptButton.classList.add('options');
     acceptButton.textContent = 'ACCEPT';
     introAlert.appendChild(acceptButton);
     document.body.appendChild(introAlert);
@@ -74,11 +81,14 @@ function createPrincipalLayer() {
     title.classList.add('main-game__h1');
     layerGradient.classList.add('layer-gradient');
     buttonMenu.classList.add('menu');
+    buttonMenu.classList.add('options');
     startButton.classList.add('start-button');
     startButton.textContent = 'START';
     musicButton.setAttribute('id', 'music');
+    musicButton.classList.add('options');
     musicButton.textContent = 'MUSIC';
     effectsButton.setAttribute('id', 'effects');
+    effectsButton.classList.add('options');
     effectsButton.textContent = 'FX';
     layer.appendChild(buttonMenu);
     layer.appendChild(layerGradient);
@@ -252,7 +262,8 @@ function stateStamina() {
 
 function enemyWins() {
     if (player.health <= 0) {
-        endSound();
+        loseSound.play();
+        setTimeout(endSound, 500);
         playMusic();
         selector("#main-container").style.display = 'none';
         let gameOver = document.createElement("div"),
@@ -370,3 +381,11 @@ function enemyScream() {
 function endSound() {
     enemy.health <= 0 ? endSounds[0].play() : endSounds[1].play();
 }
+
+
+optionButtons.addEventListener('click', () => {
+    clickSound.play();
+}) 
+startButton.addEventListener('click', () => {
+    startSound.play();
+})
