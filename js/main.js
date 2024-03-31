@@ -24,6 +24,9 @@ const actionSounds = [
 ]
 endSounds[0].volume = 0.5;
 endSounds[1].volume = 0.5;
+actionSounds[0].volume = 0.5;
+actionSounds[1].volume = 0.5;
+actionSounds[2].volume = 0.5;
 battleMusic.volume = 0.2;
 let basicAttackBtn = selector('#basic-attack');
 let specialAttackBtn = selector('#special-attack');
@@ -149,7 +152,7 @@ let enemyTimeOut;
 
 basicAttackBtn.addEventListener('click', function() {
     actionSounds[0].play();
-    setTimeout(enemyScream(), 400);
+    setTimeout(enemyScream, 100);
     let playerStrength = player.attackPlayer();
     enemy.receiveDamage(playerStrength);
     buttons.forEach(button => {
@@ -168,7 +171,7 @@ basicAttackBtn.addEventListener('click', function() {
 });
 specialAttackBtn.addEventListener('click', function() {
     actionSounds[1].play();
-    setTimeout(enemyScream(), 1000);
+    setTimeout(enemyScream, 200);
     let playerStrength = player.specialAttackPlayer();
     enemy.receiveDamage(playerStrength);
     buttons.forEach(button => {
@@ -318,7 +321,7 @@ function toggleFx() {
             sound.volume = 0.5;
         })
         actionSounds.forEach(sound => {
-            sound.volume = 1;
+            sound.volume = 0.5;
         })
         volumeFxOn = true;
     } else if (volumeFxOn === true) {
