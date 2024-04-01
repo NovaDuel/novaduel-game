@@ -1,9 +1,12 @@
 import { Player } from "./modules/player.js";
 import { Enemy } from "./modules/enemy.js";
+import { rain } from "./modules/rain.js";
 
 const selector = selector => document.querySelector(selector);
 const selectAll = selector => document.querySelectorAll(selector);
+const rainMenu = new Audio("../music/rain-menu.mp3");
 const menuMusic = new Audio("../music/menu-music.mp3");
+const rainSound = new Audio("../music/rain.mp3");
 const battleMusic = new Audio("../music/battle-music.mp3");
 const clickSound = new Audio("../music/click.mp3")
 const startSound = new Audio("../music/start.mp3")
@@ -25,6 +28,8 @@ const actionSounds = [
     new Audio("../music/special-attack.mp3"),
     new Audio("../music/heal.mp3")
 ]
+rainMenu.volume = 0.5;
+rainSound.volume = 0.1;
 endSounds[0].volume = 0.5;
 endSounds[1].volume = 0.5;
 loseSound.volume = 0.2;
@@ -107,6 +112,7 @@ function createPrincipalLayer() {
     document.body.appendChild(layer);
     startButton.addEventListener('click', () => {
         selector("#main-container").style.display = 'block';
+        rain();
         layer.style.display = 'none';
         startSound.play();
         playMusic();
@@ -452,13 +458,21 @@ function toggleFx() {
 
 function playMusic() {
     if (menuMusicIsPlaying === false) {
+        rainSound.pause();
         battleMusic.pause();
+        rainSound.currentTime = 0;
         battleMusic.currentTime = 0;
+        rainMenu.play();
         menuMusic.play();
         menuMusicIsPlaying = true;
     } else if (menuMusicIsPlaying === true) {
+        rainMenu.pause();
         menuMusic.pause();
+        rainMenu.currentTime = 0;
         menuMusic.currentTime = 0;
+        rainSound.loop = true;
+        battleMusic.loop = true;
+        rainSound.play();
         battleMusic.play();
         menuMusicIsPlaying = false;
     }

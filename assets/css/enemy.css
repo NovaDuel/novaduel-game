@@ -26,5 +26,10 @@
     font-size: calc(1em + 1vw);
     color: var(--colour-five);
     background-color: var(--colour-four);
-    box-shadow: 4px 8px var(--colour-five);
+    box-shadow: 0 8px var(--colour-five);
+}
+
+#retry-btn:active {
+    transform: translateY(6px);
+    box-shadow: 0 2px var(--colour-five);
 }

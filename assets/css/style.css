@@ -31,6 +31,7 @@ body {
     background-image: url("../images/background.webp");
     background-size: cover;
     position: relative;
+    overflow: hidden;
 }
 
 #main-container {
@@ -41,6 +42,13 @@ body {
     background-size: cover;
     background-image: url("../images/scenario.gif");
     padding-bottom: 1em;
+}
+
+#hud {
+    position: absolute;
+    width: 1024px;
+    height: 768px;
+    z-index: 1;
 }
 
 #status {
@@ -147,7 +155,12 @@ body {
     height: calc(5em + 1vw);
     background-color: #333;
     border: 2px solid var(--colour-six);
-    box-shadow: 2px 2px var(--colour-four);
+    box-shadow: 0 7px var(--colour-four);
+}
+
+.btn:active  {
+    transform: translateY(5px);
+    box-shadow: 0 2px var(--colour-four);
 }
 
 .attack {
@@ -174,4 +187,101 @@ body {
 
 button {
     cursor: pointer;
+}
+
+.rain-wrapper {
+    position: absolute;
+    width: 1024px;
+    height: 768px;
+}
+
+.rain {
+    position: absolute;
+    width: 97%;
+    height: 95%;
+    z-index: 0;
+}
+
+#back-row {
+    display: block;
+    z-index: -1;
+    opacity: 0.5;
+}
+
+.drop {
+    position: absolute;
+    top: 0%;
+    width: 15px;
+    height: 90px;
+    pointer-events: none;
+    animation: drop 0.5s linear infinite;
+}
+
+@keyframes drop {
+    0% {
+        transform: translateY(0);
+    }
+    75% {
+        transform: translateY(600px);
+    }
+    100% {
+        transform: translateY(650px);
+    }
+}
+
+.stem {
+    width: 1px;
+    height: 60%;
+    margin-left: 7px;
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.25));
+    animation: stem 0.5s linear infinite;
+    opacity: 0;
+}
+
+@keyframes stem {
+    0% {
+        opacity: 0;
+    }
+    5% {
+        opacity: 0.25;
+    }
+    30% {
+        opacity: 1;
+    }
+    75% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+.splat {
+    width: 15px;
+    height: 10px;
+    border-top: 2px dotted rgba(255, 255, 255, 0.5);
+    border-radius: 50%;
+    opacity: 1;
+    transform: scale(0);
+    animation: splat 0.5s linear infinite;
+    display: block;
+}
+
+@keyframes splat {
+    0% {
+        opacity: 1;
+        transform: scale(0);
+    }
+    80% {
+        opacity: 1;
+        transform: scale(0);
+    }
+    90% {
+        opacity: 0.5;
+        transform: scale(1);
+    }
+    100% {
+        opacity: 0;
+        transform: scale(1.5);
+    }
 }
