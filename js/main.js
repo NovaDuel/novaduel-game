@@ -119,6 +119,7 @@ function createPrincipalLayer() {
         clickSound.play();
         toggleFx();
     })
+    menuButton(buttonMenu, selector('.main-game'))
 }
 
 function updateBars() {
@@ -478,4 +479,26 @@ function playerLowHealth() {
             playerImage.style.backgroundImage = "url('../assets/images/player.webp')"
         }, 250);
     }, 500)
+}
+
+function menuButton(button, screen){
+    let buttonClose = document.createElement('button');
+    button.addEventListener('click', () => {
+        let layerMenu = document.createElement('div'),
+            menuOl = document.createElement('ul');
+
+        layerMenu.classList.add('layer-menu');
+        menuOl.classList.add('menu__ol');
+        buttonClose.classList.add('close-menu');
+        menuOl.innerHTML = `<li><a href="#">Instructions</a></li><li><a href="#">Credits</a></li><li><a href="#">Github</a></li>`;
+        buttonClose.textContent = 'X';
+        layerMenu.appendChild(buttonClose);
+        layerMenu.appendChild(menuOl);
+        screen.appendChild(layerMenu);
+    });
+
+    buttonClose.addEventListener('click', () => {
+        screen.removeChild(selector('.layer-menu'));
+    });
+    
 }
