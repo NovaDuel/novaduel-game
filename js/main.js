@@ -501,16 +501,26 @@ function menuButton(button, screen){
         layerMenu.classList.add('layer-menu');
         menuOl.classList.add('menu__ol');
         buttonClose.classList.add('close-menu');
-        menuOl.innerHTML = `<li><button id="first" class="option-btn">Instructions</button></li><li><button class="second option-btn">Credits</button></li><li><button class="third option-btn">Github</button></li>`;
+        menuOl.innerHTML = `<li><button id="first" class="option-btn">Instructions</button></li><li><button id="second" class="option-btn">Credits</button></li><li><button id="third" class="option-btn">Github</button></li>`;
         buttonClose.textContent = 'X';
         layerMenu.appendChild(buttonClose);
         layerMenu.appendChild(menuOl);
         screen.appendChild(layerMenu);
         
         let option1 = selector('#first');
+        let option2 = selector('#second');
+        let option3 = selector('#third');
         option1.addEventListener('click', () => {
             layerMenu.style.display = 'none';
-            layerTextOptions(screen);
+            layerTextOptions(screen, option1);
+        });
+        option2.addEventListener('click', () => {
+            layerMenu.style.display = 'none';
+            layerTextOptions(screen, option2);
+        });
+        option3.addEventListener('click', () => {
+            layerMenu.style.display = 'none';
+            layerTextOptions(screen, option3);
         });
     });
     
@@ -520,14 +530,23 @@ function menuButton(button, screen){
     
 }
 
-function layerTextOptions(screen) {
+function layerTextOptions(screen, optionButton) {
     let layer = document.createElement('div'),
         text = document.createElement('p');
     
     layer.classList.add('layer-text');
     text.classList.add('text');
-
-    text.textContent = `Instructions: Use the attack buttons (normal and special attack) to defeat your opponent, you can also heal yourself with the heal button.`;
+    switch(optionButton.id) {
+        case 'first':
+            text.textContent = `Instructions: Use the attack buttons (normal and special attack) to defeat your opponent, you can also heal yourself with the heal button.`;
+            break;
+        case 'second':
+            text.textContent = `Credits: Developed by <a href="`;
+            break;
+        case 'third':
+            text.textContent = `Github: <a href="https://github.com/NovaDuel/novaduel-game">NovaDuel</a>`;
+            break;
+    }
 
     screen.appendChild(layer);
     layer.appendChild(text);
