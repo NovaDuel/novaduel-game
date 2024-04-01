@@ -5,6 +5,8 @@ const selector = selector => document.querySelector(selector);
 const selectAll = selector => document.querySelectorAll(selector);
 const menuMusic = new Audio("../music/menu-music.mp3");
 const battleMusic = new Audio("../music/battle-music.mp3");
+const clickSound = new Audio("../music/click.mp3")
+const startSound = new Audio("../music/start.mp3")
 const enemyScreams = [
     new Audio("../music/enemy-scream1.mp3"),
     new Audio("../music/enemy-scream2.mp3"),
@@ -15,35 +17,48 @@ const enemyScreams = [
 ];
 const endSounds = [
     new Audio("../music/you-win.mp3"),
-    new Audio("../music/game-over.mp3")
+    new Audio("../music/game-over.mp3"),
 ]
+const loseSound = new Audio("../music/lost.mp3");
 const actionSounds = [
-    new Audio("../music/basicattack.mp3"),
-    new Audio("../music/specialattack.mp3"),
+    new Audio("../music/basic-attack.mp3"),
+    new Audio("../music/special-attack.mp3"),
     new Audio("../music/heal.mp3")
 ]
 endSounds[0].volume = 0.5;
 endSounds[1].volume = 0.5;
+loseSound.volume = 0.2;
+clickSound.volume = 0.5;
+actionSounds[0].volume = 0.5;
+actionSounds[1].volume = 0.5;
+actionSounds[2].volume = 0.5;
 battleMusic.volume = 0.2;
+startSound.volume = 0.3;
 let basicAttackBtn = selector('#basic-attack');
 let specialAttackBtn = selector('#special-attack');
 let healBtn = selector('#heal-action');
 let menuMusicIsPlaying = false;
-let volumeMusicOn = false;
-let volumeFxOn = false;
+let volumeMusicOn = true;
+let volumeFxOn = true;
+let playerImage = selector('#player');
+let enemyImage = selector('#enemy');
+let playerLowInterval;
+let enemyLowInterval;
 
-let player = new Player(100, 100, 20);
-let enemy = new Enemy(100, 100, 18);
+let player = new Player(100, 100, 18);
+let enemy = new Enemy(100, 100, 16);
 
 intro();
 updateBars();
 stateHealth();
+stateStamina();
 
 function intro() {
     selector("#main-container").style.display = 'none';
     let introAlert = document.createElement('div');
     let acceptButton = document.createElement('button');
     acceptButton.setAttribute('id', 'accept');
+    acceptButton.classList.add('options');
     acceptButton.textContent = 'ACCEPT';
     introAlert.appendChild(acceptButton);
     document.body.appendChild(introAlert);
@@ -59,9 +74,9 @@ function createPrincipalLayer() {
     let musicButton = document.createElement('button');
     let effectsButton = document.createElement('button');
     let layer = document.createElement('div'),
-        buttonMenu = document.createElement('button'),
-        title = document.createElement('h1'),
-        layerGradient = document.createElement('div');
+    buttonMenu = document.createElement('button'),
+    title = document.createElement('h1'),
+    layerGradient = document.createElement('div');
     title.innerHTML = `<span>N</span>OVA<span>D</span>UEL`;
     
     buttonMenu.textContent = 'MENU';
@@ -83,13 +98,23 @@ function createPrincipalLayer() {
     document.body.appendChild(layer);
     document.body.appendChild(musicButton);
     document.body.appendChild(effectsButton);
-    musicButton.addEventListener('click', toggleMusic)
-    effectsButton.addEventListener('click', toggleFx)
     startButton.addEventListener('click', () => {
         selector("#main-container").style.display = 'block';
         layer.style.display = 'none';
+        startSound.play();
         playMusic();
     });
+    buttonMenu.addEventListener('click', () => {
+        clickSound.play();
+    })
+    musicButton.addEventListener('click', () => {
+        clickSound.play();
+        toggleMusic();
+    })
+    effectsButton.addEventListener('click', () => {
+        clickSound.play();
+        toggleFx();
+    })
 }
 
 function updateBars() {
@@ -104,43 +129,57 @@ function updateBars() {
 }
 
 function actionsEnemy() {
-    if (enemy.stamina >= 10) {
-        if (enemy.health > 70) {
+    if (enemy.health <= 25 && enemy.stamina >= 20) {
+        clearInterval(enemyLowInterval);
+        enemyHeals();
+        enemy.healing();
+    } else if (enemy.stamina >= 30) {
+        if (enemy.health > 60) {
             let randomAction = Math.floor(Math.random() * 2);
             switch(randomAction) {
                 case 0:
+                    actionSounds[0].play();
+                    playerHit();
                     let enemyStrength = enemy.attackEnemy();
                     player.receiveDamage(enemyStrength);
                     break;
                 case 1:
+                    actionSounds[1].play();
+                    playerHit();
                     let specialEnemyStrength = enemy.specialAttackEnemy();
                     player.receiveDamage(specialEnemyStrength);
                     break;
             }
-        } else if (enemy.health <= 70){
+        } else if (enemy.health <= 60){
             let randomAction = Math.floor(Math.random() * 3);
             switch(randomAction) {
                 case 0:
+                    actionSounds[0].play();
+                    playerHit();
                     let enemyStrength = enemy.attackEnemy();
                     player.receiveDamage(enemyStrength);
                     break;
                 case 1:
+                    actionSounds[1].play();
+                    playerHit();
                     let specialEnemyStrength = enemy.specialAttackEnemy();
                     player.receiveDamage(specialEnemyStrength);
                     break;
                 case 2:
+                    clearInterval(enemyLowInterval);
+                    enemyHeals();
                     enemy.healing();
                     break;
                 }
             }
-            
-        } else {
-            let enemyStrength = enemy.attackEnemy();
-            player.receiveDamage(enemyStrength);
-            // selector('#health-player').textContent = player.health;
-        }
+    } else {
+        actionSounds[0].play();
+        playerHit();
+        let enemyStrength = enemy.attackEnemy();
+        player.receiveDamage(enemyStrength);
+                // selector('#health-player').textContent = player.health;
+    }
     updateBars();
-    stateHealth();
     enemyWins();
 }
 
@@ -149,7 +188,7 @@ let enemyTimeOut;
 
 basicAttackBtn.addEventListener('click', function() {
     actionSounds[0].play();
-    setTimeout(enemyScream(), 400);
+    setTimeout(enemyHit, 100);
     let playerStrength = player.attackPlayer();
     enemy.receiveDamage(playerStrength);
     buttons.forEach(button => {
@@ -162,13 +201,13 @@ basicAttackBtn.addEventListener('click', function() {
             stateHealth();
             stateStamina()
         });
-    }, 1500);
+    }, 2500);
     updateBars();
     playerWins();
 });
 specialAttackBtn.addEventListener('click', function() {
     actionSounds[1].play();
-    setTimeout(enemyScream(), 1000);
+    setTimeout(enemyHit, 200);
     let playerStrength = player.specialAttackPlayer();
     enemy.receiveDamage(playerStrength);
     buttons.forEach(button => {
@@ -181,44 +220,59 @@ specialAttackBtn.addEventListener('click', function() {
             stateHealth();
             stateStamina()
         })
-    }, 2100)
+    }, 2500)
     updateBars();
     playerWins();
 });
 healBtn.addEventListener('click', function() {
+    clearInterval(playerLowInterval);
     if (player.health > 70 || player.stamina === 0) {
         alert("No puedes curarte ahora mismo");
     } else {
-        actionSounds[2].play();
+        playerHeals();
         player.healing();
         buttons.forEach(button => {
             button.setAttribute("disabled", "");
         })
-        enemyTimeOut = setTimeout(actionsEnemy, 1000);
+        enemyTimeOut = setTimeout(actionsEnemy, 1700);
         setTimeout(function() {
             buttons.forEach(button => {
                 button.removeAttribute("disabled", "")
                 stateHealth();
                 stateStamina()
             });
-        }, 2000)
+        }, 2500)
         updateBars();
     }
 });
 
 
 function stateHealth() {
-    if (player.health > 70){
+    clearInterval(enemyLowInterval);
+    clearInterval(playerLowInterval);
+    if (player.health > 65){
         healBtn.setAttribute("disabled", "");
         healBtn.addEventListener('mouseover', (e) => {
             e.target.setAttribute("title", "You are already healed");
         });
     }
     
-    if (player.health <= 70) {
+    if (player.health <= 65) {
         healBtn.addEventListener('mouseover', (e) => {
             e.target.setAttribute("title", "You can heal");
         });
+    }
+
+    if (player.health <= 35) {
+        playerLowHealth();
+    } else if (player.health > 35) {
+        clearInterval(playerLowInterval);
+    }
+
+    if (enemy.health <= 35) {
+        enemyLowHealth();
+    } else if (enemy.health > 35) {
+        clearInterval(enemyLowInterval);
     }
 };
 
@@ -229,7 +283,7 @@ function stateStamina() {
             e.target.setAttribute("title", "You don't have enough stamina");
         });
     } 
-    if (player.stamina < 10) {
+    if (player.stamina < 40) {
         specialAttackBtn.setAttribute("disabled", "");
         specialAttackBtn.addEventListener('mouseover', (e) => {
             e.target.setAttribute("title", "You don't have enough stamina");
@@ -239,7 +293,8 @@ function stateStamina() {
 
 function enemyWins() {
     if (player.health <= 0) {
-        endSound();
+        loseSound.play();
+        setTimeout(endSound, 500);
         playMusic();
         selector("#main-container").style.display = 'none';
         let gameOver = document.createElement("div"),
@@ -248,7 +303,7 @@ function enemyWins() {
             retryBtn = document.createElement("button");
         gameOver.setAttribute("id", "game-over");
         retryBtn.setAttribute("id", "retry-btn");
-        charEnemyWins.setAttribute("src", "../assets/images/enemy.png");
+        charEnemyWins.setAttribute("src", "../assets/images/enemy.webp");
         charEnemyWins.setAttribute("alt", "enemy-char");
         gameOver.classList.add("end-screen");
         charEnemyWins.classList.add('img-enemy-wins');
@@ -264,7 +319,7 @@ function enemyWins() {
 
 function playerWins() { 
     if (enemy.health <= 0) {
-        enemyScream();
+        enemyHit();
         endSound();
         playMusic();
         clearTimeout(enemyTimeOut);
@@ -285,14 +340,18 @@ function playerWins() {
 }
 
 function tryAgain(buttonRetry, screen) {
+    player.health = 100;
+    enemy.health = 100;
+    player.stamina = 100;
+    enemy.stamina = 100;
+    stateHealth();
+    updateBars();
+    clearInterval(enemyLowInterval);
+    clearInterval(playerLowInterval);
     buttonRetry.addEventListener('click', () => {
+        startSound.play();
         playMusic();
         screen.remove();
-        player.health = 100;
-        enemy.health = 100;
-        player.stamina = 100;
-        enemy.stamina = 100;
-        updateBars();
         selector("#main-container").style.display = 'block';
     });
 }
@@ -318,7 +377,7 @@ function toggleFx() {
             sound.volume = 0.5;
         })
         actionSounds.forEach(sound => {
-            sound.volume = 1;
+            sound.volume = 0.5;
         })
         volumeFxOn = true;
     } else if (volumeFxOn === true) {
@@ -349,11 +408,56 @@ function playMusic() {
     }
 }
 
-function enemyScream() {
+function enemyHit() {
     let randomScream = enemyScreams[Math.floor(Math.random() * 5)];
+    enemyImage.style.backgroundImage = "url('../assets/images/enemy-hit.webp')";
+    setTimeout(function() {
+        enemyImage.style.backgroundImage = "url('../assets/images/enemy.webp')"
+    }, 150);
     enemy.health > 0 ? randomScream.play() : enemyScreams[5].play();
+}
+
+function enemyHeals() {
+    actionSounds[2].play();
+    enemyImage.style.backgroundImage = "url('../assets/images/enemy-heal.webp')";
+    setTimeout(function() {
+        enemyImage.style.backgroundImage = "url('../assets/images/enemy.webp')"
+    }, 1500);
 }
 
 function endSound() {
     enemy.health <= 0 ? endSounds[0].play() : endSounds[1].play();
+}
+
+function playerHit() {
+    playerImage.style.backgroundImage = "url('../assets/images/player-hit.webp')";
+    setTimeout(function() {
+        playerImage.style.backgroundImage = "url('../assets/images/player.webp')"
+    }, 150);
+}
+
+function playerHeals() {
+    actionSounds[2].play();
+    playerImage.style.backgroundImage = "url('../assets/images/player-heal.webp')";
+    setTimeout(function() {
+        playerImage.style.backgroundImage = "url('../assets/images/player.webp')"
+    }, 1500);
+}
+
+function enemyLowHealth() {
+    enemyLowInterval = setInterval(function() {
+        enemyImage.style.backgroundImage = "url('../assets/images/enemy-low.webp')";
+        setTimeout(function() {
+            enemyImage.style.backgroundImage = "url('../assets/images/enemy.webp')"
+        }, 250);
+    }, 500)
+}
+
+function playerLowHealth() {
+    playerLowInterval = setInterval(function() {
+        playerImage.style.backgroundImage = "url('../assets/images/player-low.webp')";
+        setTimeout(function() {
+            playerImage.style.backgroundImage = "url('../assets/images/player.webp')"
+        }, 250);
+    }, 500)
 }
