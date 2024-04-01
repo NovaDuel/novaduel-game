@@ -102,10 +102,6 @@ function createPrincipalLayer() {
     layer.appendChild(musicButton);
     layer.appendChild(effectsButton);
     document.body.appendChild(layer);
-    document.body.appendChild(musicButton);
-    document.body.appendChild(effectsButton);
-    musicButton.addEventListener('click', toggleMusic)
-    effectsButton.addEventListener('click', toggleFx)
     startButton.addEventListener('click', () => {
         selector("#main-container").style.display = 'block';
         layer.style.display = 'none';
@@ -187,6 +183,7 @@ function actionsEnemy() {
         player.receiveDamage(enemyStrength);
                 // selector('#health-player').textContent = player.health;
     }
+    setTimeout(stateHealth(), 250)
     updateBars();
     enemyWins();
 }

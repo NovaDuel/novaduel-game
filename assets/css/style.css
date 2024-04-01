@@ -66,6 +66,7 @@ body {
     background-color: rgb(179, 255, 0);
     clip-path: polygon(13% 0%, 100% 0%, 85% 99.5%, 0% 100%);
     position: relative;
+    transition: 1.5s ease 0.2s;
     span {
         position: absolute;
         right: 10em;
@@ -73,7 +74,6 @@ body {
         color: var(--colour-five);
         font-size: 1.5em;
     }
-    transition: 1.5s ease 0.2s;
 }
 
 .stamina {
@@ -82,6 +82,7 @@ body {
     background-color: rgb(189, 0, 236);
     clip-path: polygon(13% 0%, 100% 0%, 85% 99.5%, 0% 100%);
     position: relative;
+    transition: 1.5s ease 0.2s;
     span {
         position: absolute;
         top: 10px;
@@ -94,7 +95,6 @@ body {
 #health-player span,
 #stamina-player span {
     left: 10em;
-    transition: 1.5s ease 0.2s;
 }
 
 #characters {
