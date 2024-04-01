@@ -23,7 +23,7 @@ body {
     justify-content: center;
     -webkit-user-select: none;
     user-select: none;
-    background-image: url(../images/background.png);
+    background-image: url("../images/background.webp");
     background-size: cover;
 }
 
@@ -33,7 +33,7 @@ body {
     border-radius: 4px;
     border: 20px double rgba(82, 82, 82, 0.976);
     background-size: cover;
-    background-image: url("../images/scenario.jpg");
+    background-image: url("../images/scenario.webp");
 }
 
 #status {
@@ -85,14 +85,14 @@ body {
     background-repeat: no-repeat;
     background-position: center;
     background-size: 70%;
-    background-image: url("../images/player.png")
+    background-image: url("../images/player.webp")
 }
 
 #enemy {
     background-repeat: no-repeat;
     background-position: center;
     background-size: 80%;
-    background-image: url("../images/enemy.png")
+    background-image: url("../images/enemy.webp")
 }
 
 #actions {

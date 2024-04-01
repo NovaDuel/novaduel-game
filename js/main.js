@@ -266,14 +266,14 @@ function stateHealth() {
         playerLowHealth();
     } else if (player.health > 35) {
         clearInterval(playerLowInterval);
-        playerImage.style.backgroundImage = "url('../assets/images/player.png')";
+        playerImage.style.backgroundImage = "url('../assets/images/player.webp')";
     }
 
     if (enemy.health <= 35) {
         enemyLowHealth();
     } else if (enemy.health > 35) {
         clearInterval(enemyLowInterval);
-        enemyImage.style.backgroundImage = "url('../assets/images/enemy.png')";
+        enemyImage.style.backgroundImage = "url('../assets/images/enemy.webp')";
     }
 };
 
@@ -304,7 +304,7 @@ function enemyWins() {
             retryBtn = document.createElement("button");
         gameOver.setAttribute("id", "game-over");
         retryBtn.setAttribute("id", "retry-btn");
-        charEnemyWins.setAttribute("src", "../assets/images/enemy.png");
+        charEnemyWins.setAttribute("src", "../assets/images/enemy.webp");
         charEnemyWins.setAttribute("alt", "enemy-char");
         gameOver.classList.add("end-screen");
         charEnemyWins.classList.add('img-enemy-wins');
@@ -410,18 +410,18 @@ function playMusic() {
 
 function enemyHit() {
     let randomScream = enemyScreams[Math.floor(Math.random() * 5)];
-    enemyImage.style.backgroundImage = "url('../assets/images/enemy-hit.png')";
+    enemyImage.style.backgroundImage = "url('../assets/images/enemy-hit.webp')";
     setTimeout(function() {
-        enemyImage.style.backgroundImage = "url('../assets/images/enemy.png')"
+        enemyImage.style.backgroundImage = "url('../assets/images/enemy.webp')"
     }, 150);
     enemy.health > 0 ? randomScream.play() : enemyScreams[5].play();
 }
 
 function enemyHeals() {
     actionSounds[2].play();
-    enemyImage.style.backgroundImage = "url('../assets/images/enemy-heal.png')";
+    enemyImage.style.backgroundImage = "url('../assets/images/enemy-heal.webp')";
     setTimeout(function() {
-        enemyImage.style.backgroundImage = "url('../assets/images/enemy.png')"
+        enemyImage.style.backgroundImage = "url('../assets/images/enemy.webp')"
     }, 1000);
 }
 
@@ -430,34 +430,34 @@ function endSound() {
 }
 
 function playerHit() {
-    playerImage.style.backgroundImage = "url('../assets/images/player-hit.png')";
+    playerImage.style.backgroundImage = "url('../assets/images/player-hit.webp')";
     setTimeout(function() {
-        playerImage.style.backgroundImage = "url('../assets/images/player.png')"
+        playerImage.style.backgroundImage = "url('../assets/images/player.webp')"
     }, 150);
 }
 
 function playerHeals() {
     actionSounds[2].play();
-    playerImage.style.backgroundImage = "url('../assets/images/player-heal.png')";
+    playerImage.style.backgroundImage = "url('../assets/images/player-heal.webp')";
     setTimeout(function() {
-        playerImage.style.backgroundImage = "url('../assets/images/player.png')"
+        playerImage.style.backgroundImage = "url('../assets/images/player.webp')"
     }, 1000);
 }
 
 function enemyLowHealth() {
     enemyLowInterval = setInterval(function() {
-        enemyImage.style.backgroundImage = "url('../assets/images/enemy-low.png')";
+        enemyImage.style.backgroundImage = "url('../assets/images/enemy-low.webp')";
         setTimeout(function() {
-            enemyImage.style.backgroundImage = "url('../assets/images/enemy.png')"
+            enemyImage.style.backgroundImage = "url('../assets/images/enemy.webp')"
         }, 250);
     }, 500)
 }
 
 function playerLowHealth() {
     playerLowInterval = setInterval(function() {
-        playerImage.style.backgroundImage = "url('../assets/images/player-low.png')";
+        playerImage.style.backgroundImage = "url('../assets/images/player-low.webp')";
         setTimeout(function() {
-            playerImage.style.backgroundImage = "url('../assets/images/player.png')"
+            playerImage.style.backgroundImage = "url('../assets/images/player.webp')"
         }, 250);
     }, 500)
 }
