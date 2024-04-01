@@ -40,6 +40,7 @@ body {
     border: 5px double #5d2145;
     background-size: cover;
     background-image: url("../images/scenario.jpg");
+    position: relative;
 }
 
 #status {
@@ -129,6 +130,41 @@ body {
     justify-content: center;
 }
 
+
+.buttons {
+    display: flex;
+    column-gap: 1em;
+}
+
 button {
     cursor: pointer;
+}
+
+.attack, 
+.special,
+.heal {
+    width: calc(4em + 1vw);
+    height: calc(4em + 1vw);
+    border-radius: 50%;
+    background-color: #333;
+    background-repeat: no-repeat;
+    background-size: 70%;
+    background-position: center;
+    border: 2px solid var(--colour-six);
+    box-shadow: 2px 2px var(--colour-four);
+}
+
+.attack {
+    background-image: url("../images/sword.png");
+}
+
+.special {
+    background-image: url("../images/blast.png");
+}
+
+.layer-menu {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: 1;
 }
