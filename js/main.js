@@ -541,6 +541,7 @@ function layerTextOptions(screen, optionButton) {
     switch(optionButton.id) {
         case 'first':
             option.innerHTML = `
+            <button class="close-menu" id="btn-close">X</button>
             <h2 class="option__h2">Instructions</h2>
             <ul>
                 <li><img src="../assets/images/attack.png"> <p>Normal attack</p></li>
@@ -572,4 +573,7 @@ function layerTextOptions(screen, optionButton) {
     }
     layer.appendChild(option);
     screen.appendChild(layer);
+    selector('#btn-close').addEventListener('click', () => {
+        screen.removeChild(layer);
+    });
 }
