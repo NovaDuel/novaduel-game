@@ -3,6 +3,8 @@ export function rain() {
     let rainBack = document.querySelector("#back-row");
 
     let increment = 0;
+    let drops = "";
+    let backDrops = "";
 
     let drop = document.createElement("div");
     let stem = document.createElement("div");

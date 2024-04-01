@@ -13,7 +13,7 @@ export function rain() {
 
     
 
-    while (increment < 100) {
+    while (increment < 50) {
         let randomHundred = Math.round(Math.random() * 98);
         let randomFive = Math.round(Math.random() * 5);
         increment += randomFive;

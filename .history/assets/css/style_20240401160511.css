@@ -217,10 +217,10 @@ button {
         transform: translateY(0);
     }
     75% {
-        transform: translateY(600px);
+        transform: translateY(750px);
     }
     100% {
-        transform: translateY(650px);
+        transform: translateY(740px);
     }
 }
 
@@ -230,17 +230,13 @@ button {
     margin-left: 7px;
     background: linear-gradient(to bottom, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.25));
     animation: stem 0.5s linear infinite;
-    opacity: 0;
 }
 
 @keyframes stem {
     0% {
-        opacity: 0;
+        opacity: 1;
     }
-    5% {
-        opacity: 0.25;
-    }
-    30% {
+    65% {
         opacity: 1;
     }
     75% {

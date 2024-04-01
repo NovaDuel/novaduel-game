@@ -15,7 +15,7 @@ export function rain() {
 
     while (increment < 100) {
         let randomHundred = Math.round(Math.random() * 98);
-        let randomFive = Math.round(Math.random() * 5);
+        let randomFive = Math.round(Math.random() * 10);
         increment += randomFive;
 
         rainFront.innerHTML += '<div class="drop" style="left: ' + increment + '%; bottom: ' + (randomFive + randomFive - 1 + 90) + '%; animation-delay: 0.' + randomHundred + 's; animation-duration: 0.5' + randomHundred + 's;"><div class="stem" style="animation-delay: 0.' + randomHundred + 's; animation-duration: 0.5' + randomHundred + 's;"></div><div class="splat" style="animation-delay: 0.' + randomHundred + 's; animation-duration: 0.5' + randomHundred + 's;"></div></div>';
