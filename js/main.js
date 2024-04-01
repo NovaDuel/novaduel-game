@@ -130,6 +130,7 @@ function updateBars() {
 
 function actionsEnemy() {
     if (enemy.health <= 25 && enemy.stamina >= 20) {
+        clearInterval(enemyLowInterval);
         enemyHeals();
         enemy.healing();
     } else if (enemy.stamina >= 30) {
@@ -165,6 +166,7 @@ function actionsEnemy() {
                     player.receiveDamage(specialEnemyStrength);
                     break;
                 case 2:
+                    clearInterval(enemyLowInterval);
                     enemyHeals();
                     enemy.healing();
                     break;
@@ -177,9 +179,7 @@ function actionsEnemy() {
         player.receiveDamage(enemyStrength);
                 // selector('#health-player').textContent = player.health;
     }
-    
     updateBars();
-    stateHealth();
     enemyWins();
 }
 
@@ -225,6 +225,7 @@ specialAttackBtn.addEventListener('click', function() {
     playerWins();
 });
 healBtn.addEventListener('click', function() {
+    clearInterval(playerLowInterval);
     if (player.health > 70 || player.stamina === 0) {
         alert("No puedes curarte ahora mismo");
     } else {
@@ -266,14 +267,12 @@ function stateHealth() {
         playerLowHealth();
     } else if (player.health > 35) {
         clearInterval(playerLowInterval);
-        playerImage.style.backgroundImage = "url('../assets/images/player.webp')";
     }
 
     if (enemy.health <= 35) {
         enemyLowHealth();
     } else if (enemy.health > 35) {
         clearInterval(enemyLowInterval);
-        enemyImage.style.backgroundImage = "url('../assets/images/enemy.webp')";
     }
 };
 
@@ -341,17 +340,18 @@ function playerWins() {
 }
 
 function tryAgain(buttonRetry, screen) {
+    player.health = 100;
+    enemy.health = 100;
+    player.stamina = 100;
+    enemy.stamina = 100;
+    stateHealth();
+    updateBars();
+    clearInterval(enemyLowInterval);
+    clearInterval(playerLowInterval);
     buttonRetry.addEventListener('click', () => {
-        clearInterval(enemyLowInterval);
-        clearInterval(playerLowInterval);
         startSound.play();
         playMusic();
         screen.remove();
-        player.health = 100;
-        enemy.health = 100;
-        player.stamina = 100;
-        enemy.stamina = 100;
-        updateBars();
         selector("#main-container").style.display = 'block';
     });
 }
@@ -422,7 +422,7 @@ function enemyHeals() {
     enemyImage.style.backgroundImage = "url('../assets/images/enemy-heal.webp')";
     setTimeout(function() {
         enemyImage.style.backgroundImage = "url('../assets/images/enemy.webp')"
-    }, 1000);
+    }, 1500);
 }
 
 function endSound() {
@@ -441,7 +441,7 @@ function playerHeals() {
     playerImage.style.backgroundImage = "url('../assets/images/player-heal.webp')";
     setTimeout(function() {
         playerImage.style.backgroundImage = "url('../assets/images/player.webp')"
-    }, 1000);
+    }, 1500);
 }
 
 function enemyLowHealth() {
