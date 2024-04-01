@@ -61,14 +61,17 @@ stateHealth();
 function intro() {
     selector("#main-container").style.display = 'none';
     let introAlert = document.createElement('div'),
-        introText = document.createElement('p'),
+        introText = document.createElement('div'),
         acceptButton = document.createElement('button');
     acceptButton.setAttribute('id', 'accept');
 
     introAlert.classList.add('modal-intro');
     introText.classList.add('modal-text');
     acceptButton.textContent = 'ACCEPT';
-    introText.textContent = `Welcome to NovaDuel! Use the attack buttons (normal and special attack) to defeat your opponent, you can also heal yourself with the heal button.`;
+    introText.innerHTML = `
+    <h2 class="modal-text__h2">Welcome to <span>NovaDuel</span>!</h2>
+    <p>The use of headphones is recommended for a better experience.</p>
+    <p>Use the attack buttons (normal and special attack) to defeat your opponent, you can also heal yourself with the heal button. Be careful with your health and stamina, if you run out of health you will lose the game. Good luck!</p>`;
     introAlert.appendChild(introText);
     introText.appendChild(acceptButton);    document.body.appendChild(introAlert);
     acceptButton.addEventListener('click', () => {
@@ -313,6 +316,25 @@ function stateStamina() {
     }
 }
 
+function bindMenuButtonEvent() {
+    let buttonMenu = document.querySelector('#menu');
+    let screenWins = document.querySelector('.victory');
+    let screenOver = document.querySelector('.end-screen');
+    if (buttonMenu) {
+        if(screenWins) {
+            buttonMenu.removeEventListener('click', menuButton(buttonMenu, screenWins));
+            buttonMenu.addEventListener('click', () => {
+                menuButton(buttonMenu, screenWins);
+            });
+        } else {
+            buttonMenu.addEventListener('click', () => {
+                buttonMenu.removeEventListener('click', menuButton(buttonMenu, screenOver));
+                menuButton(buttonMenu, screenOver);
+            });
+        }
+    }
+}
+
 function enemyWins() {
     if (player.health <= 0) {
         loseSound.play();
@@ -328,6 +350,7 @@ function enemyWins() {
         retryBtn.setAttribute("id", "retry-btn");
         charEnemyWins.setAttribute("src", "../assets/images/enemy.webp");
         charEnemyWins.setAttribute("alt", "enemy-char");
+        buttonMenu.setAttribute("id", "menu");
         gameOver.classList.add("end-screen");
         charEnemyWins.classList.add('img-enemy-wins');
         buttonMenu.classList.add('menu');
@@ -339,6 +362,8 @@ function enemyWins() {
         gameOver.appendChild(charEnemyWins);
         gameOver.appendChild(retryBtn);
         document.body.appendChild(gameOver);
+        console.log('valor de selector', selector('.menu'));
+        bindMenuButtonEvent();
         tryAgain(selector("#retry-btn"), selector('.end-screen'));
     } 
 }   
@@ -357,6 +382,7 @@ function playerWins() {
             charPlayerWins = document.createElement('img');
         victory.setAttribute("id", "victory");
         retryBtn.setAttribute("id", "play-again");
+        buttonMenu.setAttribute("id", "menu");
         charPlayerWins.setAttribute("src", "../assets/images/player.webp");
         victory.classList.add("victory");
         buttonMenu.classList.add('menu');
@@ -370,6 +396,7 @@ function playerWins() {
         victory.appendChild(charPlayerWins);
         victory.appendChild(retryBtn);
         document.body.appendChild(victory);
+        bindMenuButtonEvent();
         tryAgain(selector("#play-again"), selector('.victory'));
     }
 }
@@ -520,20 +547,12 @@ function menuButton(button, screen){
         layerMenu.appendChild(menuOl);
         screen.appendChild(layerMenu);
         
-        let option1 = selector('#first');
-        let option2 = selector('#second');
-        let option3 = selector('#third');
-        option1.addEventListener('click', () => {
-            layerMenu.style.display = 'none';
-            layerTextOptions(screen, option1);
-        });
-        option2.addEventListener('click', () => {
-            layerMenu.style.display = 'none';
-            layerTextOptions(screen, option2);
-        });
-        option3.addEventListener('click', () => {
-            layerMenu.style.display = 'none';
-            layerTextOptions(screen, option3);
+        let arrayoptionBtn = selectAll('.option-btn');
+        arrayoptionBtn.forEach(optionBtn => {
+            optionBtn.addEventListener('click', () => {
+                layerMenu.style.display = 'none';
+                layerTextOptions(screen, optionBtn);
+            });
         });
     });
     
@@ -545,22 +564,51 @@ function menuButton(button, screen){
 
 function layerTextOptions(screen, optionButton) {
     let layer = document.createElement('div'),
-        text = document.createElement('p');
+        option = document.createElement('div');
     
-    layer.classList.add('layer-text');
-    text.classList.add('text');
+    option.classList.add('option');
+    layer.classList.add('layer-option');
+    console.log('valor de id', optionButton.id);
+    let close;
     switch(optionButton.id) {
         case 'first':
-            text.textContent = `Instructions: Use the attack buttons (normal and special attack) to defeat your opponent, you can also heal yourself with the heal button.`;
+            option.innerHTML = `
+            <button class="close-menu" id="btn-close">X</button>
+            <h2 class="option__h2">Instructions</h2>
+            <ul>
+                <li><img src="../assets/images/attack.png"> <p>Normal attack</p></li>
+                <li><img src="../assets/images/special.png"> <p>Special attack, consumes 40 stamina.</p></li>
+                <li><img src="../assets/images/heal.png"> <p>Heal yourself, consumes 20 stamina.</p></li>
+            </ul>`;
             break;
         case 'second':
-            text.textContent = `Credits: Developed by <a href="`;
+            option.innerHTML = `
+            <button class="close-menu" id="btn-close">X</button>
+            <h2 class="option__h2">Developed by</h2>
+            <ul class="credits-ul">
+                <li>
+                    <a href="https://github.com/DarkOwn3r">
+                        <img src="../assets/images/pablo-profile.png">
+                    </a>
+                    <p>Pablo Santana Ojeda</p>
+                </li>
+                <li>
+                    <a href="https://github.com/Monica-R">
+                        <img src="../assets/images/monica-r-profile.png">
+                    </a>
+                    <p>Mónica Roka Paco</p>
+                </li>
+            </ul>`;
             break;
         case 'third':
-            text.textContent = `Github: <a href="https://github.com/NovaDuel/novaduel-game">NovaDuel</a>`;
+            option.innerHTML = `<button class="close-menu" id="btn-close">X</button><p><img src="../assets/images/github.png"> <a class="repo-game" href="https://github.com/NovaDuel/novaduel-game">NovaDuel</a></p>`;
             break;
     }
-
+    layer.appendChild(option);
     screen.appendChild(layer);
-    layer.appendChild(text);
+    close = selector('#btn-close');
+    console.log('valor de close', close);
+    close.addEventListener('click', () => {
+        screen.removeChild(layer);
+    });
 }
