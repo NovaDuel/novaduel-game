@@ -1,7 +1,6 @@
 export function rain() {
     let rainFront = document.querySelector("#front-row");
     let rainBack = document.querySelector("#back-row");
-
     let increment = 0;
 
     let drop = document.createElement("div");
@@ -10,8 +9,6 @@ export function rain() {
     drop.classList.add("drop");
     stem.classList.add("stem");
     splat.classList.add("splat");
-
-    
 
     while (increment < 100) {
         let randomHundred = Math.round(Math.random() * 98);

@@ -97,6 +97,11 @@
     cursor: pointer;
 }
 
+.start-button:active {
+    transform: translateY(.2em);
+    box-shadow: 0em .1em 0em var(--colour-three);
+}
+
 #music, #effects {
     width: 10%;
     position: absolute;
