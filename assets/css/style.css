@@ -155,7 +155,12 @@ body {
     height: calc(5em + 1vw);
     background-color: #333;
     border: 2px solid var(--colour-six);
-    box-shadow: 2px 2px var(--colour-four);
+    box-shadow: 0 7px var(--colour-four);
+}
+
+.btn:active  {
+    transform: translateY(5px);
+    box-shadow: 0 2px var(--colour-four);
 }
 
 .attack {
