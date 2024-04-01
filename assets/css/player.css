@@ -27,5 +27,10 @@
     font-size: calc(1em + 1vw);
     color: var(--colour-eight);
     background-color: var(--colour-one);
-    box-shadow: 4px 6px var(--colour-seven);
+    box-shadow: 0 8px var(--colour-seven);
+}
+
+#play-again:active {
+    transform: translateY(6px);
+    box-shadow: 0 2px var(--colour-seven);
 }
