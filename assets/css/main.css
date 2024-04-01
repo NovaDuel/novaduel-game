@@ -27,10 +27,15 @@
         border: none;
         padding: .2em;
         background-color: var(--colour-six);
-        box-shadow: .1em .2em 0em var(--colour-five);
+        box-shadow: 0 .2em 0em var(--colour-five);
         color: var(--colour-two);
         font-size: calc(.8em + 1vw);
     }
+}
+
+#accept:active {
+    transform: translateY(.1em);
+    box-shadow: 0 .1em 0em var(--colour-five);
 }
 
 .main-game {
