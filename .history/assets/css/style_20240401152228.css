@@ -31,7 +31,6 @@ body {
     background-image: url("../images/background.webp");
     background-size: cover;
     position: relative;
-    overflow: hidden;
 }
 
 #main-container {
