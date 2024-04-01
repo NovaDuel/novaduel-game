@@ -337,7 +337,7 @@ function enemyWins() {
     } 
 }   
 
-function playerWins() { 
+function playerWins() {
     if (enemy.health <= 0) {
         enemyHit();
         endSound();
@@ -351,7 +351,7 @@ function playerWins() {
             charPlayerWins = document.createElement('img');
         victory.setAttribute("id", "victory");
         retryBtn.setAttribute("id", "play-again");
-        charPlayerWins.setAttribute("src", "../assets/images/player.png");
+        charPlayerWins.setAttribute("src", "../assets/images/player.webp");
         victory.classList.add("victory");
         buttonMenu.classList.add('menu');
         victoryText.classList.add("victory__h1");
@@ -364,6 +364,7 @@ function playerWins() {
         victory.appendChild(charPlayerWins);
         victory.appendChild(retryBtn);
         document.body.appendChild(victory);
+        //menuButton(selector('.menu'), selector('.victory'));
         tryAgain(selector("#play-again"), selector('.victory'));
     }
 }
