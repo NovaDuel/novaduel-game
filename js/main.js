@@ -501,15 +501,34 @@ function menuButton(button, screen){
         layerMenu.classList.add('layer-menu');
         menuOl.classList.add('menu__ol');
         buttonClose.classList.add('close-menu');
-        menuOl.innerHTML = `<li><a href="#">Instructions</a></li><li><a href="#">Credits</a></li><li><a href="#">Github</a></li>`;
+        menuOl.innerHTML = `<li><button id="first" class="option-btn">Instructions</button></li><li><button class="second option-btn">Credits</button></li><li><button class="third option-btn">Github</button></li>`;
         buttonClose.textContent = 'X';
         layerMenu.appendChild(buttonClose);
         layerMenu.appendChild(menuOl);
         screen.appendChild(layerMenu);
+        
+        let option1 = selector('#first');
+        option1.addEventListener('click', () => {
+            layerMenu.style.display = 'none';
+            layerTextOptions(screen);
+        });
     });
-
+    
     buttonClose.addEventListener('click', () => {
         screen.removeChild(selector('.layer-menu'));
     });
     
+}
+
+function layerTextOptions(screen) {
+    let layer = document.createElement('div'),
+        text = document.createElement('p');
+    
+    layer.classList.add('layer-text');
+    text.classList.add('text');
+
+    text.textContent = `Instructions: Use the attack buttons (normal and special attack) to defeat your opponent, you can also heal yourself with the heal button.`;
+
+    screen.appendChild(layer);
+    layer.appendChild(text);
 }
