@@ -44,10 +44,13 @@ body {
 }
 
 #hud {
-    position: absolute;
     width: 1024px;
     height: 768px;
-    z-index: 1;
+    border-radius: 4px;
+    border: 5px double #5d2145;
+    background-size: cover;
+    background-image: url("../images/scenario.gif");
+    padding-bottom: 1em;
 }
 
 #status {
@@ -185,8 +188,9 @@ button {
 
 .rain-wrapper {
     position: absolute;
-    width: 1024px;
-    height: 768px;
+    top: 0;
+    width: 100%;
+    height: 100%;
 }
 
 .rain {

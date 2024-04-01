@@ -185,6 +185,7 @@ button {
 
 .rain-wrapper {
     position: absolute;
+    top: 0;
     width: 1024px;
     height: 768px;
 }

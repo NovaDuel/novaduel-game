@@ -30,30 +30,28 @@
 </head>
 <body>
     <div id="main-container">
-        <div id="hud">
-            <div id="status">
-                <div class="bars-wrapper">
-                    <div id="health-player" class="health"><span></span></div>
-                    <div id="stamina-player" class="stamina"><span></span></div>
-                </div>
-                <div class="bars-wrapper">
-                    <div id="health-enemy" class="health"><span></span></div>
-                    <div id="stamina-enemy" class="stamina"><span></span></div>
-                </div>
+        <div id="status">
+            <div class="bars-wrapper">
+                <div id="health-player" class="health"><span></span></div>
+                <div id="stamina-player" class="stamina"><span></span></div>
             </div>
-            <div id="characters">
-                <div id="player" class="pj"></div>
-                <div id="enemy" class="pj"></div>
-            </div>
-            <div id="actions">
-                <div id="buttons" class="buttons">
-                    <button id="basic-attack" class="btn attack"></button>
-                    <button id="special-attack" class="btn special"></button>
-                    <button id="heal-action" class="btn heal"></button>
-                </div>
+            <div class="bars-wrapper">
+                <div id="health-enemy" class="health"><span></span></div>
+                <div id="stamina-enemy" class="stamina"><span></span></div>
             </div>
         </div>
-        <div class="rain-wrapper">
+        <div id="characters">
+            <div id="player" class="pj"></div>
+            <div id="enemy" class="pj"></div>
+        </div>
+        <div id="actions">
+            <div id="buttons" class="buttons">
+                <button id="basic-attack" class="btn attack"></button>
+                <button id="special-attack" class="btn special"></button>
+                <button id="heal-action" class="btn heal"></button>
+            </div>
+        </div>
+        <div class="rain">
             <div id="front-row" class="rain"></div>
             <div id="back-row" class="rain"></div>
         </div>

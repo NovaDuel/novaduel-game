@@ -105,7 +105,6 @@ function createPrincipalLayer() {
     document.body.appendChild(layer);
     startButton.addEventListener('click', () => {
         selector("#main-container").style.display = 'block';
-        rain();
         layer.style.display = 'none';
         startSound.play();
         playMusic();
