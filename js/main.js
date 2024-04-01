@@ -28,7 +28,7 @@ const actionSounds = [
     new Audio("../music/special-attack.mp3"),
     new Audio("../music/heal.mp3")
 ]
-rainMenu.volume = 0.5;
+rainMenu.volume = 0.4;
 rainSound.volume = 0.1;
 endSounds[0].volume = 0.5;
 endSounds[1].volume = 0.5;
@@ -100,9 +100,9 @@ function createPrincipalLayer() {
     startButton.classList.add('start-button');
     startButton.textContent = 'START';
     musicButton.setAttribute('id', 'music');
-    musicButton.innerHTML = `<img class="music-button" src="../assets/images/music.png" alt="music.png">`;
+    musicButton.innerHTML = `<img class="music-button" src="../assets/images/music.png" alt="music on">`;
     effectsButton.setAttribute('id', 'effects');
-    effectsButton.innerHTML = '<img class="speaker-button" src="../assets/images/speaker.png" alt="speaker.png">';
+    effectsButton.innerHTML = '<img class="speaker-button" src="../assets/images/speaker.png" alt="speaker on">';
     layer.appendChild(buttonMenu);
     layer.appendChild(layerGradient);
     layer.appendChild(title);
@@ -419,11 +419,14 @@ function tryAgain(buttonRetry, screen) {
 }
 
 function toggleMusic() {
+    let musicButton = document.querySelector("#music")
     if (volumeMusicOn === false) {
+        musicButton.innerHTML = `<img class="music-button" src="../assets/images/music.png" alt="music on">`;
         menuMusic.volume = 1;
         battleMusic.volume = 0.2;
         volumeMusicOn = true;
     } else if (volumeMusicOn === true) {
+        musicButton.innerHTML = `<img class="music-button" src="../assets/images/music-off.png" alt="music off">`;
         menuMusic.volume = 0;
         battleMusic.volume = 0;
         volumeMusicOn = false;
@@ -431,7 +434,9 @@ function toggleMusic() {
 }
 
 function toggleFx() {
+    let effectsButton = document.querySelector("#effects")
     if (volumeFxOn === false) {
+        effectsButton.innerHTML = '<img class="speaker-button" src="../assets/images/speaker.png" alt="speaker on">';
         enemyScreams.forEach(scream => {
             scream.volume = 1;
         })
@@ -441,8 +446,11 @@ function toggleFx() {
         actionSounds.forEach(sound => {
             sound.volume = 0.5;
         })
+        rainMenu.volume = 0.4;
+        rainSound.volume = 0.1;
         volumeFxOn = true;
     } else if (volumeFxOn === true) {
+        effectsButton.innerHTML = '<img class="speaker-button" src="../assets/images/speaker-off.png" alt="speaker off">';
         enemyScreams.forEach(scream => {
             scream.volume = 0;
         })
@@ -452,6 +460,8 @@ function toggleFx() {
         actionSounds.forEach(sound => {
             sound.volume = 0;
         })
+        rainMenu.volume = 0;
+        rainSound.volume = 0;
         volumeFxOn = false;
     }
 }
