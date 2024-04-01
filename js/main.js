@@ -42,6 +42,8 @@ let volumeMusicOn = true;
 let volumeFxOn = true;
 let playerImage = selector('#player');
 let enemyImage = selector('#enemy');
+let playerLowInterval;
+let enemyLowInterval;
 
 let player = new Player(100, 100, 18);
 let enemy = new Enemy(100, 100, 16);
@@ -245,6 +247,8 @@ healBtn.addEventListener('click', function() {
 
 
 function stateHealth() {
+    clearInterval(enemyLowInterval);
+    clearInterval(playerLowInterval);
     if (player.health > 65){
         healBtn.setAttribute("disabled", "");
         healBtn.addEventListener('mouseover', (e) => {
@@ -256,6 +260,20 @@ function stateHealth() {
         healBtn.addEventListener('mouseover', (e) => {
             e.target.setAttribute("title", "You can heal");
         });
+    }
+
+    if (player.health <= 35) {
+        playerLowHealth();
+    } else if (player.health > 35) {
+        clearInterval(playerLowInterval);
+        playerImage.style.backgroundImage = "url('../assets/images/player.png')";
+    }
+
+    if (enemy.health <= 35) {
+        enemyLowHealth();
+    } else if (enemy.health > 35) {
+        clearInterval(enemyLowInterval);
+        enemyImage.style.backgroundImage = "url('../assets/images/enemy.png')";
     }
 };
 
@@ -324,6 +342,8 @@ function playerWins() {
 
 function tryAgain(buttonRetry, screen) {
     buttonRetry.addEventListener('click', () => {
+        clearInterval(enemyLowInterval);
+        clearInterval(playerLowInterval);
         startSound.play();
         playMusic();
         screen.remove();
@@ -422,4 +442,22 @@ function playerHeals() {
     setTimeout(function() {
         playerImage.style.backgroundImage = "url('../assets/images/player.png')"
     }, 1000);
+}
+
+function enemyLowHealth() {
+    enemyLowInterval = setInterval(function() {
+        enemyImage.style.backgroundImage = "url('../assets/images/enemy-low.png')";
+        setTimeout(function() {
+            enemyImage.style.backgroundImage = "url('../assets/images/enemy.png')"
+        }, 250);
+    }, 500)
+}
+
+function playerLowHealth() {
+    playerLowInterval = setInterval(function() {
+        playerImage.style.backgroundImage = "url('../assets/images/player-low.png')";
+        setTimeout(function() {
+            playerImage.style.backgroundImage = "url('../assets/images/player.png')"
+        }, 250);
+    }, 500)
 }
