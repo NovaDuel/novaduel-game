@@ -64,7 +64,8 @@ function intro() {
     introText.classList.add('modal-text');
     acceptButton.textContent = 'ACCEPT';
     introText.innerHTML = `
-    <h2 class="modal-text__h2">Welcome to <span>NovaDuel</span>!</h2> 
+    <h2 class="modal-text__h2">Welcome to <span>NovaDuel</span>!</h2>
+    <p>The use of headphones is recommended for a better experience.</p>
     <p>Use the attack buttons (normal and special attack) to defeat your opponent, you can also heal yourself with the heal button. Be careful with your health and stamina, if you run out of health you will lose the game. Good luck!</p>`;
     introAlert.appendChild(introText);
     introText.appendChild(acceptButton);    document.body.appendChild(introAlert);
@@ -309,6 +310,25 @@ function stateStamina() {
     }
 }
 
+function bindMenuButtonEvent() {
+    let buttonMenu = document.querySelector('#menu');
+    let screenWins = document.querySelector('.victory');
+    let screenOver = document.querySelector('.end-screen');
+    if (buttonMenu) {
+        if(screenWins) {
+            buttonMenu.removeEventListener('click', menuButton(buttonMenu, screenWins));
+            buttonMenu.addEventListener('click', () => {
+                menuButton(buttonMenu, screenWins);
+            });
+        } else {
+            buttonMenu.addEventListener('click', () => {
+                buttonMenu.removeEventListener('click', menuButton(buttonMenu, screenOver));
+                menuButton(buttonMenu, screenOver);
+            });
+        }
+    }
+}
+
 function enemyWins() {
     if (player.health <= 0) {
         loseSound.play();
@@ -324,6 +344,7 @@ function enemyWins() {
         retryBtn.setAttribute("id", "retry-btn");
         charEnemyWins.setAttribute("src", "../assets/images/enemy.webp");
         charEnemyWins.setAttribute("alt", "enemy-char");
+        buttonMenu.setAttribute("id", "menu");
         gameOver.classList.add("end-screen");
         charEnemyWins.classList.add('img-enemy-wins');
         buttonMenu.classList.add('menu');
@@ -335,6 +356,8 @@ function enemyWins() {
         gameOver.appendChild(charEnemyWins);
         gameOver.appendChild(retryBtn);
         document.body.appendChild(gameOver);
+        console.log('valor de selector', selector('.menu'));
+        bindMenuButtonEvent();
         tryAgain(selector("#retry-btn"), selector('.end-screen'));
     } 
 }   
@@ -353,6 +376,7 @@ function playerWins() {
             charPlayerWins = document.createElement('img');
         victory.setAttribute("id", "victory");
         retryBtn.setAttribute("id", "play-again");
+        buttonMenu.setAttribute("id", "menu");
         charPlayerWins.setAttribute("src", "../assets/images/player.webp");
         victory.classList.add("victory");
         buttonMenu.classList.add('menu');
@@ -366,7 +390,7 @@ function playerWins() {
         victory.appendChild(charPlayerWins);
         victory.appendChild(retryBtn);
         document.body.appendChild(victory);
-        //menuButton(selector('.menu'), selector('.victory'));
+        bindMenuButtonEvent();
         tryAgain(selector("#play-again"), selector('.victory'));
     }
 }
