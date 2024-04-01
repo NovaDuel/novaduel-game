@@ -512,6 +512,7 @@ function menuButton(button, screen){
         let option3 = selector('#third');
         option1.addEventListener('click', () => {
             layerMenu.style.display = 'none';
+            console.log('valor de screen', screen);
             layerTextOptions(screen, option1);
         });
         option2.addEventListener('click', () => {
@@ -532,22 +533,43 @@ function menuButton(button, screen){
 
 function layerTextOptions(screen, optionButton) {
     let layer = document.createElement('div'),
-        text = document.createElement('p');
+        option = document.createElement('div');
     
-    layer.classList.add('layer-text');
-    text.classList.add('text');
+    option.classList.add('option');
+    layer.classList.add('layer-option');
+    console.log('valor de id', optionButton.id);
     switch(optionButton.id) {
         case 'first':
-            text.textContent = `Instructions: Use the attack buttons (normal and special attack) to defeat your opponent, you can also heal yourself with the heal button.`;
+            option.innerHTML = `
+            <h2 class="option__h2">Instructions</h2>
+            <ul>
+                <li><img src="../assets/images/attack.png"> <p>Normal attack</p></li>
+                <li><img src="../assets/images/special.png"> <p>Special attack, consumes 40 stamina.</p></li>
+                <li><img src="../assets/images/heal.png"> <p>Heal yourself, consumes 20 stamina.</p></li>
+            </ul>`;
             break;
         case 'second':
-            text.textContent = `Credits: Developed by <a href="`;
+            option.innerHTML = `
+            <h2 class="option__h2">Credits</h2>
+            <ul>
+                <li>
+                    <a href="https://github.com/DarkOwn3r">
+                        <img src="../assets/images/pablo-profile.png">
+                    </a>
+                    <p>Pablo Santana Ojeda</p>
+                </li>
+                <li>
+                    <a href="https://github.com/Monica-R">
+                        <img src="../assets/images/monica-r-profile.png">
+                    </a>
+                    <p>Mónica Roka Paco</p>
+                </li>
+            </ul>`;
             break;
         case 'third':
-            text.textContent = `Github: <a href="https://github.com/NovaDuel/novaduel-game">NovaDuel</a>`;
+            option.innerHTML = `<p>Github: <a href="https://github.com/NovaDuel/novaduel-game">NovaDuel</a></p>`;
             break;
     }
-
+    layer.appendChild(option);
     screen.appendChild(layer);
-    layer.appendChild(text);
 }
