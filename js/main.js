@@ -55,13 +55,17 @@ stateStamina();
 
 function intro() {
     selector("#main-container").style.display = 'none';
-    let introAlert = document.createElement('div');
-    let acceptButton = document.createElement('button');
+    let introAlert = document.createElement('div'),
+        introText = document.createElement('p'),
+        acceptButton = document.createElement('button');
     acceptButton.setAttribute('id', 'accept');
-    acceptButton.classList.add('options');
+
+    introAlert.classList.add('modal-intro');
+    introText.classList.add('modal-text');
     acceptButton.textContent = 'ACCEPT';
-    introAlert.appendChild(acceptButton);
-    document.body.appendChild(introAlert);
+    introText.textContent = `Welcome to NovaDuel! Use the attack buttons (normal and special attack) to defeat your opponent, you can also heal yourself with the heal button.`;
+    introAlert.appendChild(introText);
+    introText.appendChild(acceptButton);    document.body.appendChild(introAlert);
     acceptButton.addEventListener('click', () => {
         introAlert.remove();
         createPrincipalLayer()
@@ -88,16 +92,20 @@ function createPrincipalLayer() {
     startButton.classList.add('start-button');
     startButton.textContent = 'START';
     musicButton.setAttribute('id', 'music');
-    musicButton.textContent = 'MUSIC';
+    musicButton.innerHTML = `<img class="music-button" src="../assets/images/music.png" alt="music.png">`;
     effectsButton.setAttribute('id', 'effects');
-    effectsButton.textContent = 'FX';
+    effectsButton.innerHTML = '<img class="speaker-button" src="../assets/images/speaker.png" alt="speaker.png">';
     layer.appendChild(buttonMenu);
     layer.appendChild(layerGradient);
     layer.appendChild(title);
     layer.appendChild(startButton);
+    layer.appendChild(musicButton);
+    layer.appendChild(effectsButton);
     document.body.appendChild(layer);
     document.body.appendChild(musicButton);
     document.body.appendChild(effectsButton);
+    musicButton.addEventListener('click', toggleMusic)
+    effectsButton.addEventListener('click', toggleFx)
     startButton.addEventListener('click', () => {
         selector("#main-container").style.display = 'block';
         layer.style.display = 'none';
@@ -122,10 +130,10 @@ function updateBars() {
     selector("#stamina-player").style.width = `${player.stamina}%`;
     selector("#health-enemy").style.width = `${enemy.health}%`;
     selector("#stamina-enemy").style.width = `${enemy.stamina}%`;
-    selector('#health-player').textContent = player.health;
-    selector('#stamina-player').textContent = player.stamina;
-    selector('#health-enemy').textContent = enemy.health;
-    selector('#stamina-enemy').textContent = enemy.stamina;
+    selector('#health-player span').textContent = player.health;
+    selector('#stamina-player span').textContent = player.stamina;
+    selector('#health-enemy span').textContent = enemy.health;
+    selector('#stamina-enemy span').textContent = enemy.stamina;
 }
 
 function actionsEnemy() {
@@ -300,15 +308,19 @@ function enemyWins() {
         let gameOver = document.createElement("div"),
             gameOverText = document.createElement("h1"),
             charEnemyWins = document.createElement('img'),
-            retryBtn = document.createElement("button");
+            retryBtn = document.createElement("button"),
+            buttonMenu = document.createElement('button');
         gameOver.setAttribute("id", "game-over");
         retryBtn.setAttribute("id", "retry-btn");
         charEnemyWins.setAttribute("src", "../assets/images/enemy.webp");
         charEnemyWins.setAttribute("alt", "enemy-char");
         gameOver.classList.add("end-screen");
         charEnemyWins.classList.add('img-enemy-wins');
+        buttonMenu.classList.add('menu');
         gameOverText.textContent = "GAME OVER";
+        buttonMenu.textContent = 'MENU';
         retryBtn.textContent = "TRY AGAIN";
+        gameOver.appendChild(buttonMenu);
         gameOver.appendChild(gameOverText);
         gameOver.appendChild(charEnemyWins);
         gameOver.appendChild(retryBtn);
@@ -324,18 +336,27 @@ function playerWins() {
         playMusic();
         clearTimeout(enemyTimeOut);
         selector("#main-container").style.display = 'none';
-        let victory = document.createElement("div");
+        let victory = document.createElement("div"),
+            victoryText = document.createElement("h1"),
+            retryBtn = document.createElement("button"),
+            buttonMenu = document.createElement('button'),
+            charPlayerWins = document.createElement('img');
         victory.setAttribute("id", "victory");
-        victory.classList.add("end-screen");
-        let victoryText = document.createElement("h1");
-        victoryText.textContent = "YOU WIN";
-        let retryBtn = document.createElement("button");
         retryBtn.setAttribute("id", "play-again");
+        charPlayerWins.setAttribute("src", "../assets/images/player.png");
+        victory.classList.add("victory");
+        buttonMenu.classList.add('menu');
+        victoryText.classList.add("victory__h1");
+        charPlayerWins.classList.add('img-player-wins');
+        buttonMenu.textContent = 'MENU';
+        victoryText.textContent = "YOU WIN";
         retryBtn.textContent = "PLAY AGAIN";
+        victory.appendChild(buttonMenu);
         victory.appendChild(victoryText);
+        victory.appendChild(charPlayerWins);
         victory.appendChild(retryBtn);
         document.body.appendChild(victory);
-        tryAgain(selector("#play-again"), selector('.end-screen'));
+        tryAgain(selector("#play-again"), selector('.victory'));
     }
 }
 

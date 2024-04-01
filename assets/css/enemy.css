@@ -6,6 +6,8 @@
     justify-content: center;
     align-items: center;
     background: linear-gradient(180deg, var(--colour-five) 42%, var(--colour-four) 100%);
+    row-gap: 1em;
+    position: relative;
     h1 {
         color: var(--colour-four);
         font-size: calc(5em + 1vw);
@@ -14,15 +16,15 @@
 }
 
 .img-enemy-wins {
-    height: 70%;
+    height: 60%;
 }
 
 #retry-btn {
-    width: 20%;
+    width: 25%;
     border: none;
     padding: .3em;
     font-size: calc(1em + 1vw);
     color: var(--colour-five);
     background-color: var(--colour-four);
-    box-shadow: 4px 8px var(--colour-five)
+    box-shadow: 4px 8px var(--colour-five);
 }
