@@ -182,7 +182,6 @@ function actionsEnemy() {
         playerHit();
         let enemyStrength = enemy.attackEnemy();
         player.receiveDamage(enemyStrength);
-                // selector('#health-player').textContent = player.health;
     }
     setTimeout(stateHealth(), 250)
     updateBars();
