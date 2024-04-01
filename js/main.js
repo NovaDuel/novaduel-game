@@ -94,6 +94,7 @@ function createPrincipalLayer() {
         layer.style.display = 'none';
         playMusic();
     });
+    menuButton(buttonMenu, layer);
 }
 
 function updateBars() {
@@ -373,4 +374,26 @@ function enemyScream() {
 
 function endSound() {
     enemy.health <= 0 ? endSounds[0].play() : endSounds[1].play();
+}
+
+function menuButton(button, screen){
+    let buttonClose = document.createElement('button');
+    button.addEventListener('click', () => {
+        let layerMenu = document.createElement('div'),
+            menuOl = document.createElement('ul');
+
+        layerMenu.classList.add('layer-menu');
+        menuOl.classList.add('menu__ol');
+        buttonClose.classList.add('close-menu');
+        menuOl.innerHTML = `<li><a href="#">Instructions</a></li><li><a href="#">Credits</a></li><li><a href="#">Github</a></li>`;
+        buttonClose.textContent = 'X';
+        layerMenu.appendChild(buttonClose);
+        layerMenu.appendChild(menuOl);
+        screen.appendChild(layerMenu);
+    });
+
+    buttonClose.addEventListener('click', () => {
+        screen.removeChild(selector('.layer-menu'));
+    });
+    
 }
