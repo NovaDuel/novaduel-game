@@ -86,11 +86,11 @@ function createPrincipalLayer() {
     let musicButton = document.createElement('button');
     let effectsButton = document.createElement('button');
     let layer = document.createElement('div'),
-    buttonMenu = document.createElement('button'),
-    title = document.createElement('h1'),
-    layerGradient = document.createElement('div');
+        buttonMenu = document.createElement('button'),
+        title = document.createElement('h1'),
+        layerGradient = document.createElement('div');
+        
     title.innerHTML = `<span>N</span>OVA<span>D</span>UEL`;
-    
     buttonMenu.textContent = 'MENU';
     layer.classList.add('main-game');
     layer.setAttribute('id', 'main');

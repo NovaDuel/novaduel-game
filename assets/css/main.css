@@ -74,9 +74,14 @@
     padding: .1em;
     border: none;
     border: 1px solid var(--colour-nine);
-    box-shadow: 1px 1px 3px var(--colour-nine);
+    box-shadow: 0px 6px 3px var(--colour-nine);
     z-index: 1;
     cursor: pointer;
+ }
+
+ .menu:active {
+    transform: translateY(3px);
+    box-shadow: 0px 3px 3px var(--colour-nine);
  }
 
 .main-game__h1 {
