@@ -56,14 +56,16 @@ stateHealth();
 function intro() {
     selector("#main-container").style.display = 'none';
     let introAlert = document.createElement('div'),
-        introText = document.createElement('p'),
+        introText = document.createElement('div'),
         acceptButton = document.createElement('button');
     acceptButton.setAttribute('id', 'accept');
 
     introAlert.classList.add('modal-intro');
     introText.classList.add('modal-text');
     acceptButton.textContent = 'ACCEPT';
-    introText.textContent = `Welcome to NovaDuel! Use the attack buttons (normal and special attack) to defeat your opponent, you can also heal yourself with the heal button.`;
+    introText.innerHTML = `
+    <h2 class="modal-text__h2">Welcome to <span>NovaDuel</span>!</h2> 
+    <p>Use the attack buttons (normal and special attack) to defeat your opponent, you can also heal yourself with the heal button. Be careful with your health and stamina, if you run out of health you will lose the game. Good luck!</p>`;
     introAlert.appendChild(introText);
     introText.appendChild(acceptButton);    document.body.appendChild(introAlert);
     acceptButton.addEventListener('click', () => {
@@ -507,21 +509,12 @@ function menuButton(button, screen){
         layerMenu.appendChild(menuOl);
         screen.appendChild(layerMenu);
         
-        let option1 = selector('#first');
-        let option2 = selector('#second');
-        let option3 = selector('#third');
-        option1.addEventListener('click', () => {
-            layerMenu.style.display = 'none';
-            console.log('valor de screen', screen);
-            layerTextOptions(screen, option1);
-        });
-        option2.addEventListener('click', () => {
-            layerMenu.style.display = 'none';
-            layerTextOptions(screen, option2);
-        });
-        option3.addEventListener('click', () => {
-            layerMenu.style.display = 'none';
-            layerTextOptions(screen, option3);
+        let arrayoptionBtn = selectAll('.option-btn');
+        arrayoptionBtn.forEach(optionBtn => {
+            optionBtn.addEventListener('click', () => {
+                layerMenu.style.display = 'none';
+                layerTextOptions(screen, optionBtn);
+            });
         });
     });
     
@@ -538,6 +531,7 @@ function layerTextOptions(screen, optionButton) {
     option.classList.add('option');
     layer.classList.add('layer-option');
     console.log('valor de id', optionButton.id);
+    let close;
     switch(optionButton.id) {
         case 'first':
             option.innerHTML = `
@@ -551,8 +545,9 @@ function layerTextOptions(screen, optionButton) {
             break;
         case 'second':
             option.innerHTML = `
-            <h2 class="option__h2">Credits</h2>
-            <ul>
+            <button class="close-menu" id="btn-close">X</button>
+            <h2 class="option__h2">Developed by</h2>
+            <ul class="credits-ul">
                 <li>
                     <a href="https://github.com/DarkOwn3r">
                         <img src="../assets/images/pablo-profile.png">
@@ -568,12 +563,14 @@ function layerTextOptions(screen, optionButton) {
             </ul>`;
             break;
         case 'third':
-            option.innerHTML = `<p>Github: <a href="https://github.com/NovaDuel/novaduel-game">NovaDuel</a></p>`;
+            option.innerHTML = `<button class="close-menu" id="btn-close">X</button><p><img src="../assets/images/github.png"> <a class="repo-game" href="https://github.com/NovaDuel/novaduel-game">NovaDuel</a></p>`;
             break;
     }
     layer.appendChild(option);
     screen.appendChild(layer);
-    selector('#btn-close').addEventListener('click', () => {
+    close = selector('#btn-close');
+    console.log('valor de close', close);
+    close.addEventListener('click', () => {
         screen.removeChild(layer);
     });
 }

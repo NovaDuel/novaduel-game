@@ -33,6 +33,10 @@
     }
 }
 
+.modal-text__h2 > span {
+    color: var(--colour-six);
+}
+
 .main-game {
     width: 1024px;
     height: 768px;
@@ -216,7 +220,7 @@
 
         }
         p {
-            color: #333;
+            color: var(--colour-five);
             font-size: calc(.4em + 1vw);
         }
     }
@@ -226,4 +230,16 @@
     position: absolute;
     right: 30%;
     top: 26%;
+}
+
+.option p {
+    display: flex;
+    align-items: center;
+    column-gap: 1em;
+}
+
+.option p > .repo-game {
+    font-size: calc(1.4em + 1vw);
+    color: var(--colour-five);
+    text-decoration: none;
 }
