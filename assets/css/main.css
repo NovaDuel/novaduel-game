@@ -76,7 +76,7 @@
     border: 1px solid var(--colour-nine);
     box-shadow: 0px 6px 3px var(--colour-nine);
     z-index: 1;
-    cursor: pointer;
+    cursor: url("../images/cursor-pointer.png"), auto;
  }
 
  .menu:active {
@@ -103,7 +103,7 @@
     border: none;
     box-shadow: 0em .3em 0em var(--colour-three);
     z-index: 1;
-    cursor: pointer;
+    cursor: url("../images/cursor-pointer.png"), auto;
 }
 
 .start-button:active {
@@ -128,7 +128,7 @@
 .speaker-button {
     width: calc(2em + 1vw);
     z-index: 1;
-    cursor: pointer;
+    cursor: url("../images/cursor-pointer.png"), auto
 }
 
 .layer-menu {

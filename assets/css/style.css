@@ -22,6 +22,7 @@
 }
 
 body {
+    cursor: url("../images/cursor-default.png"), auto;
     height: 100vh;
     display: flex;
     align-items: center;
@@ -186,7 +187,7 @@ body {
 }
 
 button {
-    cursor: pointer;
+    cursor: url("../images/cursor-pointer.png"), auto;
 }
 
 .rain-wrapper {

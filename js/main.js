@@ -215,7 +215,7 @@ basicAttackBtn.addEventListener('click', function() {
         buttons.forEach(button => {
             button.removeAttribute("disabled", "");
             button.style.filter = 'none';
-            button.style.cursor = 'pointer';
+            button.style.cursor = 'url("../assets/images/cursor-pointer.png"), auto';
             stateHealth();
             stateStamina();
         });
@@ -238,7 +238,7 @@ specialAttackBtn.addEventListener('click', function() {
         buttons.forEach(button => {
             button.removeAttribute("disabled", "");
             button.style.filter = 'none';
-            button.style.cursor = 'pointer';
+            button.style.cursor = 'url("../assets/images/cursor-pointer.png"), auto';
             stateHealth();
             stateStamina();
         })
@@ -263,7 +263,7 @@ healBtn.addEventListener('click', function() {
             buttons.forEach(button => {
                 button.removeAttribute("disabled", "");
                 button.style.filter = 'none';
-                button.style.cursor = 'pointer';
+                button.style.cursor = 'url("../assets/images/cursor-pointer.png"), auto';
                 stateHealth();
                 stateStamina();
             });
@@ -287,7 +287,7 @@ function stateHealth() {
     
     if (player.health <= 65) {
         healBtn.style.filter = 'none';
-        healBtn.style.cursor = 'pointer';
+        healBtn.style.cursor = 'url("../assets/images/cursor-pointer.png"), auto';
         healBtn.addEventListener('mouseover', (e) => {
             e.target.setAttribute("title", "You can heal");
         });
@@ -295,7 +295,7 @@ function stateHealth() {
 
     if (player.health <= 35) {
         healBtn.style.filter = 'none';
-        healBtn.style.cursor = 'pointer';
+        healBtn.style.cursor = 'url("../assets/images/cursor-pointer.png"), auto';
         playerLowHealth();
     } else if (player.health > 35) {
         clearInterval(playerLowInterval);
