@@ -202,7 +202,7 @@ let enemyTimeOut;
 
 basicAttackBtn.addEventListener('click', function() {
     actionSounds[0].play();
-    setTimeout(enemyHit, 300);
+    setTimeout(enemyHit, 100);
     let playerStrength = player.attackPlayer();
     enemy.receiveDamage(playerStrength);
     buttons.forEach(button => {
@@ -210,7 +210,7 @@ basicAttackBtn.addEventListener('click', function() {
         button.style.filter = 'grayscale(60%)';
         button.style.cursor = 'not-allowed';
     });
-    enemyTimeOut = setTimeout(actionsEnemy, 1500);
+    enemyTimeOut = setTimeout(actionsEnemy, 1000);
     setTimeout(function() {
         buttons.forEach(button => {
             button.removeAttribute("disabled", "");
@@ -225,7 +225,7 @@ basicAttackBtn.addEventListener('click', function() {
 });
 specialAttackBtn.addEventListener('click', function() {
     actionSounds[1].play();
-    setTimeout(enemyHit, 300);
+    setTimeout(enemyHit, 200);
     let playerStrength = player.specialAttackPlayer();
     enemy.receiveDamage(playerStrength);
     buttons.forEach(button => {
@@ -233,7 +233,7 @@ specialAttackBtn.addEventListener('click', function() {
         button.style.filter = 'grayscale(60%)';
         button.style.cursor = 'not-allowed';
     })
-    enemyTimeOut = setTimeout(actionsEnemy, 1700);
+    enemyTimeOut = setTimeout(actionsEnemy, 1500);
     setTimeout(function() {
         buttons.forEach(button => {
             button.removeAttribute("disabled", "");
@@ -258,7 +258,7 @@ healBtn.addEventListener('click', function() {
             button.style.filter = 'grayscale(60%)';
             button.style.cursor = 'not-allowed';
         })
-        enemyTimeOut = setTimeout(actionsEnemy, 2000);
+        enemyTimeOut = setTimeout(actionsEnemy, 1700);
         setTimeout(function() {
             buttons.forEach(button => {
                 button.removeAttribute("disabled", "");
@@ -473,7 +473,7 @@ function enemyHit() {
     enemyImage.style.backgroundImage = "url('../assets/images/enemy-hit.webp')";
     setTimeout(function() {
         enemyImage.style.backgroundImage = "url('../assets/images/enemy.webp')"
-    }, 300);
+    }, 150);
     enemy.health > 0 ? randomScream.play() : enemyScreams[5].play();
 }
 
@@ -482,7 +482,7 @@ function enemyHeals() {
     enemyImage.style.backgroundImage = "url('../assets/images/enemy-heal.webp')";
     setTimeout(function() {
         enemyImage.style.backgroundImage = "url('../assets/images/enemy.webp')"
-    }, 1700);
+    }, 1500);
 }
 
 function endSound() {
@@ -493,7 +493,7 @@ function playerHit() {
     playerImage.style.backgroundImage = "url('../assets/images/player-hit.webp')";
     setTimeout(function() {
         playerImage.style.backgroundImage = "url('../assets/images/player.webp')"
-    }, 300);
+    }, 150);
 }
 
 function playerHeals() {
@@ -501,7 +501,7 @@ function playerHeals() {
     playerImage.style.backgroundImage = "url('../assets/images/player-heal.webp')";
     setTimeout(function() {
         playerImage.style.backgroundImage = "url('../assets/images/player.webp')"
-    }, 1700);
+    }, 1500);
 }
 
 function enemyLowHealth() {
@@ -577,20 +577,16 @@ function layerTextOptions(screen, optionButton) {
             <h2 class="option__h2">Devs</h2>
             <ul class="credits-ul">
                 <li>
-                <div class="link-wrapper">
                     <a href="https://github.com/DarkOwn3r" target="_blank">
                         <img src="../assets/images/pablo-profile.png">
-                        <p>Pablo Santana Ojeda</p>
                     </a>
-                </div>
+                    <p>Pablo Santana Ojeda</p>
                 </li>
                 <li>
-                    <div class="link-wrapper">
-                        <a href="https://github.com/Monica-R" target="_blank">
-                            <img src="../assets/images/monica-r-profile.png">
-                            <p>Mónica Roka Paco</p>
-                        </a>
-                    </div>
+                    <a href="https://github.com/Monica-R" target="_blank">
+                        <img src="../assets/images/monica-r-profile.png">
+                    </a>
+                    <p>Mónica Roka Paco</p>
                 </li>
             </ul>`;
             break;

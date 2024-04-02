@@ -77,12 +77,12 @@
     box-shadow: 0px 6px 3px var(--colour-nine);
     z-index: 1;
     cursor: url("../images/cursor-pointer.png"), auto;
-}
+ }
 
-.menu:active {
+ .menu:active {
     transform: translateY(3px);
     box-shadow: 0px 3px 3px var(--colour-nine);
-}
+ }
 
 .main-game__h1 {
     font-size: calc(8em + 1vw);
