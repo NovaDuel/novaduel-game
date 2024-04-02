@@ -577,15 +577,15 @@ function layerTextOptions(screen, optionButton) {
             <h2 class="option__h2">Devs</h2>
             <ul class="credits-ul">
                 <li>
-                <div class="link-wrapper">
-                    <a href="https://github.com/DarkOwn3r" target="_blank">
-                        <img src="../assets/images/pablo-profile.png">
-                        <p>Pablo Santana Ojeda</p>
-                    </a>
-                </div>
+                    <div>
+                        <a href="https://github.com/DarkOwn3r" target="_blank">
+                            <img src="../assets/images/pablo-profile.png">
+                            <p>Pablo Santana Ojeda</p>
+                        </a>
+                    </div>
                 </li>
                 <li>
-                    <div class="link-wrapper">
+                    <div>
                         <a href="https://github.com/Monica-R" target="_blank">
                             <img src="../assets/images/monica-r-profile.png">
                             <p>Mónica Roka Paco</p>

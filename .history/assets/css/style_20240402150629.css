@@ -287,15 +287,9 @@ button {
     }
 }
 
-.link-wrapper a {
+.link-wrapper {
     display: flex;
     width: 300px;
     justify-content: space-around;
-    align-items: center;
-    text-decoration: none;
-}
-
-.repo-game {
-    display: flex;
-    align-items: center;
+    text-align: center;
 }

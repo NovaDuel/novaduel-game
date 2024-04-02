@@ -575,20 +575,19 @@ function layerTextOptions(screen, optionButton) {
             option.innerHTML = `
             <button class="close-menu first" id="btn-close">X</button>
             <h2 class="option__h2">Devs</h2>
-            <ul class="credits-ul">
+            <ul class="credits-ul">s
                 <li>
-                <div class="link-wrapper">
+                    <div></div>
                     <a href="https://github.com/DarkOwn3r" target="_blank">
                         <img src="../assets/images/pablo-profile.png">
                         <p>Pablo Santana Ojeda</p>
                     </a>
-                </div>
                 </li>
                 <li>
-                    <div class="link-wrapper">
-                        <a href="https://github.com/Monica-R" target="_blank">
-                            <img src="../assets/images/monica-r-profile.png">
-                            <p>Mónica Roka Paco</p>
+                    <div>
+                    <a href="https://github.com/Monica-R" target="_blank">
+                        <img src="../assets/images/monica-r-profile.png">
+                        <p>Mónica Roka Paco</p>
                         </a>
                     </div>
                 </li>
