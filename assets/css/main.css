@@ -50,7 +50,7 @@
     justify-content: center;
     align-items: center;
     row-gap: 3em;
-    background-image: url("../images/neon-retro.jpg");
+    background-image: url("../images/neon-retro.webp");
     background-size: cover;
     position: relative;
 }
