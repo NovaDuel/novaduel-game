@@ -289,8 +289,8 @@ button {
 
 .link-wrapper a {
     display: flex;
+    width: 400px;
     justify-content: space-around;
-    column-gap: 20px;
     align-items: center;
     text-decoration: none;
 }

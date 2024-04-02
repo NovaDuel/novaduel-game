@@ -349,6 +349,7 @@ function enemyWins() {
         gameOver.appendChild(charEnemyWins);
         gameOver.appendChild(retryBtn);
         document.body.appendChild(gameOver);
+        console.log('valor de selector', selector('.menu'));
         tryAgain(selector("#retry-btn"), selector('.end-screen'));
     } 
 }   
@@ -557,6 +558,7 @@ function layerTextOptions(screen, optionButton) {
     
     option.classList.add('option');
     layer.classList.add('layer-option');
+    console.log('valor de id', optionButton.id);
     let close;
     switch(optionButton.id) {
         case 'first':
@@ -599,6 +601,7 @@ function layerTextOptions(screen, optionButton) {
     layer.appendChild(option);
     screen.appendChild(layer);
     close = selector('#btn-close');
+    console.log('valor de close', close);
     close.addEventListener('click', () => {
         screen.removeChild(layer);
     });
