@@ -327,25 +327,6 @@ function stateStamina() {
     }
 }
 
-function bindMenuButtonEvent() {
-    let buttonMenu = document.querySelector('#menu');
-    let screenWins = document.querySelector('.victory');
-    let screenOver = document.querySelector('.end-screen');
-    if (buttonMenu) {
-        if(screenWins) {
-            buttonMenu.removeEventListener('click', menuButton(buttonMenu, screenWins));
-            buttonMenu.addEventListener('click', () => {
-                menuButton(buttonMenu, screenWins);
-            });
-        } else {
-            buttonMenu.addEventListener('click', () => {
-                buttonMenu.removeEventListener('click', menuButton(buttonMenu, screenOver));
-                menuButton(buttonMenu, screenOver);
-            });
-        }
-    }
-}
-
 function enemyWins() {
     if (player.health <= 0) {
         loseSound.play();
@@ -355,26 +336,20 @@ function enemyWins() {
         let gameOver = document.createElement("div"),
             gameOverText = document.createElement("h1"),
             charEnemyWins = document.createElement('img'),
-            retryBtn = document.createElement("button"),
-            buttonMenu = document.createElement('button');
+            retryBtn = document.createElement("button");
         gameOver.setAttribute("id", "game-over");
         retryBtn.setAttribute("id", "retry-btn");
         charEnemyWins.setAttribute("src", "../assets/images/enemy.webp");
         charEnemyWins.setAttribute("alt", "enemy-char");
-        buttonMenu.setAttribute("id", "menu");
         gameOver.classList.add("end-screen");
         charEnemyWins.classList.add('img-enemy-wins');
-        buttonMenu.classList.add('menu');
         gameOverText.textContent = "GAME OVER";
-        buttonMenu.textContent = 'MENU';
         retryBtn.textContent = "TRY AGAIN";
-        gameOver.appendChild(buttonMenu);
         gameOver.appendChild(gameOverText);
         gameOver.appendChild(charEnemyWins);
         gameOver.appendChild(retryBtn);
         document.body.appendChild(gameOver);
         console.log('valor de selector', selector('.menu'));
-        bindMenuButtonEvent();
         tryAgain(selector("#retry-btn"), selector('.end-screen'));
     } 
 }   
@@ -389,25 +364,19 @@ function playerWins() {
         let victory = document.createElement("div"),
             victoryText = document.createElement("h1"),
             retryBtn = document.createElement("button"),
-            buttonMenu = document.createElement('button'),
             charPlayerWins = document.createElement('img');
         victory.setAttribute("id", "victory");
         retryBtn.setAttribute("id", "play-again");
-        buttonMenu.setAttribute("id", "menu");
         charPlayerWins.setAttribute("src", "../assets/images/player.webp");
         victory.classList.add("victory");
-        buttonMenu.classList.add('menu');
         victoryText.classList.add("victory__h1");
         charPlayerWins.classList.add('img-player-wins');
-        buttonMenu.textContent = 'MENU';
         victoryText.textContent = "YOU WIN";
         retryBtn.textContent = "PLAY AGAIN";
-        victory.appendChild(buttonMenu);
         victory.appendChild(victoryText);
         victory.appendChild(charPlayerWins);
         victory.appendChild(retryBtn);
         document.body.appendChild(victory);
-        bindMenuButtonEvent();
         tryAgain(selector("#play-again"), selector('.victory'));
     }
 }
@@ -604,8 +573,8 @@ function layerTextOptions(screen, optionButton) {
             break;
         case 'second':
             option.innerHTML = `
-            <button class="close-menu" id="btn-close">X</button>
-            <h2 class="option__h2">Developed by</h2>
+            <button class="close-menu first" id="btn-close">X</button>
+            <h2 class="option__h2">Devs</h2>
             <ul class="credits-ul">
                 <li>
                     <a href="https://github.com/DarkOwn3r">

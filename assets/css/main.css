@@ -20,7 +20,7 @@
     clip-path: polygon(15% 0%, 85% 0%, 100% 15%, 100% 85%, 85% 100%, 15% 100%, 0% 85%, 0% 15%);
     background-color: var(--colour-two);
     color: rgb(14, 13, 13);
-    font-size: calc(.5em + 1vw);
+    font-size: 1.2em;
     border: 8px solid var(--colour-six);
     button {
         width: 40%;
@@ -155,7 +155,7 @@
     padding: 1em;
     clip-path: polygon(15% 0%, 85% 0%, 100% 15%, 100% 85%, 85% 100%, 15% 100%, 0% 85%, 0% 15%);
     color: var(--colour-nine);
-    font-size: calc(.5em + 1vw);
+    font-size: .8em;
     list-style-type: none;
     border: 6px solid var(--colour-six);
     li {
@@ -170,7 +170,7 @@
             background-color: var(--colour-six);
             box-shadow: .1em .2em 0em var(--colour-five);
             color: var(--colour-two);
-            font-size: calc(.4em + 1vw);
+            font-size: calc(.2em + 1vw);
         }
     }
 }
@@ -202,8 +202,8 @@
 }
 
 .option {
-    width: 50%;
-    height: 60%;
+    width: 620px;
+    height: 420px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -212,6 +212,7 @@
     background-color: var(--colour-two);
     clip-path: polygon(15% 0%, 85% 0%, 100% 15%, 100% 85%, 85% 100%, 15% 100%, 0% 85%, 0% 15%);
     border: 6px solid var(--colour-six);
+    padding: 2em;
 }
 
 .option__h2{
@@ -236,15 +237,15 @@
         }
         p {
             color: var(--colour-five);
-            font-size: calc(.4em + 1vw);
+            font-size: calc(.1em + 1vw);
         }
     }
 }
 
-.btn-close {
+#btn-close {
     position: absolute;
-    right: 30%;
-    top: 26%;
+    right: 24%;
+    top: 22%;
 }
 
 .option p {
