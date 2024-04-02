@@ -290,7 +290,7 @@ button {
 .link-wrapper a {
     display: flex;
     justify-content: space-around;
-    column-gap: 20px;
+    column-gap: 2em;
     align-items: center;
     text-decoration: none;
 }
