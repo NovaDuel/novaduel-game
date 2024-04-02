@@ -208,12 +208,14 @@ basicAttackBtn.addEventListener('click', function() {
     buttons.forEach(button => {
         button.setAttribute("disabled", "")
         button.style.filter = 'grayscale(60%)';
+        button.style.cursor = 'not-allowed';
     });
     enemyTimeOut = setTimeout(actionsEnemy, 1000);
     setTimeout(function() {
         buttons.forEach(button => {
             button.removeAttribute("disabled", "");
             button.style.filter = 'none';
+            button.style.cursor = 'pointer';
             stateHealth();
             stateStamina();
         });
@@ -229,12 +231,14 @@ specialAttackBtn.addEventListener('click', function() {
     buttons.forEach(button => {
         button.setAttribute("disabled", "")
         button.style.filter = 'grayscale(60%)';
+        button.style.cursor = 'not-allowed';
     })
     enemyTimeOut = setTimeout(actionsEnemy, 1500);
     setTimeout(function() {
         buttons.forEach(button => {
             button.removeAttribute("disabled", "");
             button.style.filter = 'none';
+            button.style.cursor = 'pointer';
             stateHealth();
             stateStamina();
         })
@@ -252,12 +256,14 @@ healBtn.addEventListener('click', function() {
         buttons.forEach(button => {
             button.setAttribute("disabled", "");
             button.style.filter = 'grayscale(60%)';
+            button.style.cursor = 'not-allowed';
         })
         enemyTimeOut = setTimeout(actionsEnemy, 1700);
         setTimeout(function() {
             buttons.forEach(button => {
                 button.removeAttribute("disabled", "");
                 button.style.filter = 'none';
+                button.style.cursor = 'pointer';
                 stateHealth();
                 stateStamina();
             });
@@ -273,6 +279,7 @@ function stateHealth() {
     if (player.health > 65){
         healBtn.setAttribute("disabled", "");
         healBtn.style.filter = 'grayscale(60%)';
+        healBtn.style.cursor = 'not-allowed';
         healBtn.addEventListener('mouseover', (e) => {
             e.target.setAttribute("title", "You are already healed");
         });
@@ -280,6 +287,7 @@ function stateHealth() {
     
     if (player.health <= 65) {
         healBtn.style.filter = 'none';
+        healBtn.style.cursor = 'pointer';
         healBtn.addEventListener('mouseover', (e) => {
             e.target.setAttribute("title", "You can heal");
         });
@@ -287,6 +295,7 @@ function stateHealth() {
 
     if (player.health <= 35) {
         healBtn.style.filter = 'none';
+        healBtn.style.cursor = 'pointer';
         playerLowHealth();
     } else if (player.health > 35) {
         clearInterval(playerLowInterval);
@@ -302,6 +311,7 @@ function stateHealth() {
 function stateStamina() {
     if (player.stamina < 20) {
         healBtn.style.filter = 'grayscale(60%)';
+        healBtn.style.cursor = 'not-allowed';
         healBtn.setAttribute("disabled", "");
         healBtn.addEventListener('mouseover', (e) => {
             e.target.setAttribute("title", "You don't have enough stamina");
@@ -309,6 +319,7 @@ function stateStamina() {
     } 
     if (player.stamina < 40) {
         specialAttackBtn.style.filter = 'grayscale(60%)';
+        specialAttackBtn.style.cursor = 'not-allowed';
         specialAttackBtn.setAttribute("disabled", "");
         specialAttackBtn.addEventListener('mouseover', (e) => {
             e.target.setAttribute("title", "You don't have enough stamina");
