@@ -1,0 +1,82 @@
+body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#main-container {
+    width: 1024px;
+    height: 768px;
+    background-size: cover;
+    background-image: url(./images/scenario.jpg);
+}
+
+#status {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    height: 27%;
+}
+
+.bars-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: left;
+    width: 30%;
+    height: 60%;
+    margin-top: 30px;
+    padding: 0 20px;
+}
+
+.health {
+    width: 100%;
+    height: 40%;
+    background-color: rgb(179, 255, 0);
+}
+
+.stamina {
+    width: 100%;
+    height: 40%;
+    background-color: rgb(189, 0, 236)
+}
+
+#characters {
+    display: flex;
+    align-items: end;
+    justify-content: space-around;
+    width: 100%;
+    height: 60%;
+}
+
+.pj {
+    height: 70%;
+    width: 25%;
+    background-color: rgba(255, 255, 255, 0.274);
+}
+
+#player {
+    background-position-x: center;
+    background-size: 210%;
+    background-repeat: no-repeat;
+    background-image: url(./images/player.png)
+}
+
+#enemy {
+    transform: scaleX(-1);
+    background-position-x: -50px;
+    background-size: 160%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-image: url(./images/enemy.png)
+}
+
+#actions {
+    height: 13%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

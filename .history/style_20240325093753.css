@@ -1,0 +1,10 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+
+#main-conntainer {
+    width: 800px;
+    height: 600px;
+    background-color: aquamarine;
+}

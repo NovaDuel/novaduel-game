@@ -1,0 +1,14 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+
+#main-container {
+    width: 1024px;
+    height: 768px;
+    background-color: aquamarine;;
+}
+
+#status {
+    width: 90%;
+}
